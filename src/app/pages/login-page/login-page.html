@@ -1,17 +1,16 @@
 <div class="login-container">
-    <div class="login-tarjeta">
-        <h1 id="title">Agenda de contactos</h1>
-        <form id="formulario" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-          <input id="email" name="email" placeholder="Email" type="email" ngModel #email="ngModel" required autocomplete="email">
-            @if (email.invalid && !email.pristine) {
-            <p class="error">Debe colocar un correo electrónico valido.</p>
-            }
-            <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="8"
-                autocomplete="current-password" placeholder="●●●●●●●●●●●" required>
-            @if (password.invalid && !password.pristine) {
-            <p class="error">Debe colocar una contraseña de al menos 8 caracteres.</p>
-            }
-         <button id= "btn-login" [disabled]="isLoading || loginForm.invalid">Iniciar sesión</button>
+  <div class="login-tarjeta">
+    <h1 id="title">Agenda de contactos</h1>
+    <form id="formulario" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <input id="restauranName" name="restaurantName" placeholder="Nombre Restaurante" type="text" minlength="2" ngModel #restaurantName="ngModel" required>
+        @if (restaurantName.invalid && !restaurantName.pristine) {
+        <p class="error">Debe colocar un nombre de restaurante valido.</p>
+        }
+      <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="8" autocomplete="current-password" placeholder="●●●●●●●●●●●" required>
+        @if (password.invalid && !password.pristine) {
+        <p class="error">Debe colocar una contraseña de al menos 8 caracteres.</p>
+        }
+      <button id= "btn-login" [disabled]="isLoading || loginForm.invalid">Iniciar sesión</button>
   @if(isLoading){
     <app-spinner></app-spinner>
   }
