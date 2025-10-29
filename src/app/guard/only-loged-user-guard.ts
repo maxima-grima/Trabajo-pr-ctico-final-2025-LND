@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, RedirectCommand, Router } from '@angular/router';
+import { CanActivateChildFn, RedirectCommand, Router } from '@angular/router';
 import { AuthService } from '../SERVICE/auth-service';
-export const onlyPublicUserGuard: CanActivateFn = (route, state) => {
+export const onlyLoggedUserGuard: CanActivateChildFn = (childRoute, state) => {
   const auth = inject(AuthService);
   const router = inject(Router);
-  if (auth.token) {
-    const newPath = router.parseUrl("/");
+  if(!auth.token){
+    const newPath = router.parseUrl("/login");
     return new RedirectCommand(newPath, {
       skipLocationChange: true,
     });
