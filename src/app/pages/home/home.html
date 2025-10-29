@@ -9,8 +9,9 @@
 </form>
 
  -->
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
+
+ <ul>
+    @for (user of usersService.users; track $index){
+        <app-users-list-item [user]="user"> </app-users-list-item>     
+    }
 </ul>
