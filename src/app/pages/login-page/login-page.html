@@ -1,0 +1,22 @@
+<div class="login-container">
+  <div class="login-tarjeta">
+    <h1 id="title">Login Restaurant</h1>
+    <form id="formulario" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <input id="restauranName" name="restaurantName" placeholder="Nombre Restaurante" type="text" minlength="2" ngModel #restaurantName="ngModel" required>
+        @if (restaurantName.invalid && !restaurantName.pristine) {
+        <p class="error">Debe colocar un nombre de restaurante registrado.</p>
+        }
+      <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="8" autocomplete="current-password" placeholder="●●●●●●●●●●●" required>
+        @if (password.invalid && !password.pristine) {
+        <p class="error">Debe colocar una contraseña de al menos 8 caracteres.</p>
+        }
+      <button id= "btn-login" [disabled]="isLoading || loginForm.invalid">Iniciar sesión</button>
+  @if(isLoading){
+    <app-spinner></app-spinner>
+  }
+  @if (errorLogin) {
+    <p class="error">Datos incorrectos, intente nuevamente.</p>
+  } 
+  <p>No tenés cuenta? <a routerLink="/register">Registrate</a></p>
+</form>
+</div>

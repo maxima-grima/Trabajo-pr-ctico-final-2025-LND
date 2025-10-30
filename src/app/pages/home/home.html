@@ -1,0 +1,23 @@
+<div class="home-container">
+<header>
+    <h1>Lija</h1>
+    <nav>
+    <button routerLink="/login" class="btn-login">Iniciar Sesión</button>
+    </nav>
+</header>
+<main>
+    <section class="mensaje">
+        <h2> Descubrí los mejores restaurantes</h2>
+        <p>Explorá los menús y encontrá tus platos favoritos</p>
+    </section>
+    <section class="restaurant-list">
+        <h3>Restaurantes</h3>
+        <ul>
+        @for (user of usersService.users; track $index){
+        <app-users-list-item [user]="user"> </app-users-list-item>     
+    }
+        </ul>
+
+    </section>
+</main>
+</div>
