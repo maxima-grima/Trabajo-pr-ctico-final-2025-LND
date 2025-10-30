@@ -1,10 +1,18 @@
 <div class="login-container">
   <div class="login-tarjeta">
+<<<<<<< HEAD
     <h1 id="title">Agenda de contactos</h1>
     <form id="formulario" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
       <input id="restauranName" name="restaurantName" placeholder="Nombre Restaurante" type="text" minlength="2" ngModel #restaurantName="ngModel" required>
         @if (restaurantName.invalid && !restaurantName.pristine) {
         <p class="error">Debe colocar un nombre de restaurante valido.</p>
+=======
+    <h1 id="title">Login Restaurant</h1>
+    <form id="formulario" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <input id="restauranName" name="restaurantName" placeholder="Nombre Restaurante" type="text" minlength="2" ngModel #restaurantName="ngModel" required>
+        @if (restaurantName.invalid && !restaurantName.pristine) {
+        <p class="error">Debe colocar un nombre de restaurante registrado.</p>
+>>>>>>> f77fbf4d7b262dc19987e6946bffc4d76af16701
         }
       <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="8" autocomplete="current-password" placeholder="●●●●●●●●●●●" required>
         @if (password.invalid && !password.pristine) {
