@@ -1,13 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-<<<<<<< HEAD
-import { AuthService } from '../../SERVICE/auth-service';
-import { Spinner } from '../../Components/spinner/spinner';
-=======
 import { AuthService } from '../../services/auth-service';
 import { Spinner } from '../../components/spinner/spinner';
->>>>>>> f77fbf4d7b262dc19987e6946bffc4d76af16701
 
 
 
