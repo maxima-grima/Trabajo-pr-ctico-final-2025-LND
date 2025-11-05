@@ -1,8 +1,37 @@
+.login-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
 
 .login-tarjeta {
-    background-color: #F7C59F;
+    background-color: var(--color-text-primary);
     padding: 5vh;
     border-radius: 2vh;
     width: 70vh;
     text-align: center;
+    color: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#btn-login {
+    width: 90%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color:(--color-text-primary);
+    color: white;
+    font-size: 15px;
+    font: bold;
+    cursor: pointer;
+    transition: 0.3 ease;
 }

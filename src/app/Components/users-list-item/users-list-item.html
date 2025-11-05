@@ -1,6 +1,8 @@
 <li>
-   <span>{{user().restaurantName}}</span> 
+   <span>
+       <a [routerLink]="['/restaurant', user().id]">
+      {{user().restaurantName}}</a>
+   </span> 
    <span>{{user().adress}}</span> 
-   <span>{{user().phoneNumber}}</span>
 
 </li>

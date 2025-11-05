@@ -16,9 +16,8 @@ export class UsersService {
 
       });
       if (!res.ok) return;
-      const Users : User [] = await res.json();
-      this.users = Users
-      return Users
+      const resJson : User [] = await res.json ()
+      this.users = resJson
   }
   async getUsersbyId(id: string | number) {
     const res = await fetch(`${this.UrlBase}/${id}`,

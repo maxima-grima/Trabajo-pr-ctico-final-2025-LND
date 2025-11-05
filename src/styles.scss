@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #f7c59f;
 }
 ol, ul {
 	list-style: none;
@@ -46,7 +47,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+h1{
+	padding-bottom: 10px;
+	font-size: 30px;
+}
 
 :root {
   --color-primary: #004aad;        
@@ -56,4 +60,8 @@ table {
   --color-text-primary: #003366;   
   --color-text-secondary: #444444;      
   --color-hover: #0056cc;
+}
+
+a{
+	text-decoration: none;
 }
