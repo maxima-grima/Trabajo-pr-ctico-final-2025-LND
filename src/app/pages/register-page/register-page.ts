@@ -6,7 +6,7 @@ import { UsersService } from '../../services/users-service';
 
 @Component({
   selector: 'app-register-page',
-  imports: [RouterModule, FormsModule, ],
+  imports: [RouterModule, FormsModule,],
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss'
 })
@@ -25,11 +25,22 @@ export class RegisterPage {
       !form.value.password2 ||
       !form.value.firstName ||
       !form.value.lastName ||
-      !form.value.adress ||
+      !form.value.address ||
       !form.value.phoneNumber ||
       form.value.password !== form.value.password2) {
       this.errorRegister = true;
       return
+    }
+    
+    this.isLoading = true;
+    const user = await this.usersService.createUser(form.value);
+    this.isLoading = false;
+
+    if (!user) {
+      this.errorRegister = true;
+    } else {
+      this.errorRegister = false
+      this.router.navigate(["/login"])
     }
   }
 }

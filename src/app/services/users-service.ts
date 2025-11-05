@@ -6,7 +6,7 @@ import { AuthService } from './auth-service';
   providedIn: 'root'
 })
 export class UsersService {
-  readonly UrlBase = "https://restaurant-api.somee.com/api/users";
+  readonly UrlBase = "https://w370351.ferozo.com/api/users";
   authService = inject(AuthService)
   users: User[] = []
   async getUsers() {
