@@ -21,7 +21,7 @@ export class LoginPage {
   async login(form: any) {
     console.log(form.value)
     this.errorLogin = false;
-    if (!form.value.email || !form.value.password) {
+    if (!form.value.restaurantName || !form.value.password) {
       this.errorLogin = true;
       return
     }

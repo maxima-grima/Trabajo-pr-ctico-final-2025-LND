@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { LoginPage } from './pages/login-page/login-page';
-import { onlyPublicUserGuard} from './guard/only-public-user-guard'; 
+import { onlyPublicUserGuard } from './guard/only-public-user-guard';
 import { RegisterPage } from './pages/register-page/register-page';
 import { onlyLoggedUserGuard } from './guard/only-loged-user-guard';
+import { CanActivateFn } from '@angular/router';
 export const routes: Routes = [
-     {
+    {
         path: "",
         component: Home,
     },
@@ -18,6 +19,6 @@ export const routes: Routes = [
         path: "register",
         component: RegisterPage,
         canActivate: [onlyPublicUserGuard]
-    },
+    },
 
 ];

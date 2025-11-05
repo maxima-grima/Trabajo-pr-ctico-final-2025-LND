@@ -16,7 +16,7 @@ export class AuthService implements OnInit {
     }
   }
   async login(loginData: LoginData){
-    const res = await fetch("https://restaurant-api.somee.com/api/authentication/login",
+    const res = await fetch("https://w370351.ferozo.com/api/Authentication/login",
       {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
