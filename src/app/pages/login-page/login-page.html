@@ -11,9 +11,7 @@
         <p class="error">Debe colocar una contraseña de al menos 8 caracteres.</p>
         }
       <button id= "btn-login" [disabled]="isLoading || loginForm.invalid">Iniciar sesión</button>
-  @if(isLoading){
-    <app-spinner></app-spinner>
-  }
+
   @if (errorLogin) {
     <p class="error">Datos incorrectos, intente nuevamente.</p>
   } 

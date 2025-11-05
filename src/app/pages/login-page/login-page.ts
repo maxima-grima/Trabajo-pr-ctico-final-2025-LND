@@ -2,13 +2,12 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
-import { Spinner } from '../../components/spinner/spinner';
 
 
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterModule, FormsModule, Spinner],
+  imports: [RouterModule, FormsModule, ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss'
 })
