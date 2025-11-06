@@ -7,41 +7,7 @@
 }
 
 
-header {
-  background-color: #004e89;
-  color: #efefd0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-h1{
-  font-weight: bolder;
-  font-size: 8vh;
-}
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.btn-login {
-  background-color: #ff6b35;
-  color: #efefd0;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-login:hover {
-  background-color: #efefd0;
-  color: #ff6b35;
-}
 
 
 main {
