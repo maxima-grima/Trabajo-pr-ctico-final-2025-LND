@@ -11,10 +11,9 @@ import { UsersService } from '../services/users-service';
 })
 export class RestaurantDetailsPage implements OnInit{
   usersService = inject(UsersService)
-  restaurant: User | undefined;
-  idRestaurant = input<string>()
-  cargandoRestaurante = false;
-  router = inject (Router)
+  restaurant: User | undefined = undefined;
+  idRestaurant = input<string>();
+
   async ngOnInit() {
     this.restaurant = await this.usersService.getUsersbyId(this.idRestaurant()!);
   

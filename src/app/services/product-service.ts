@@ -7,28 +7,35 @@ import { AuthService } from './auth-service';
 })
 export class ProductsService {
   authService = inject(AuthService);
-  readonly API_URL = "https://restaurant-api.somee.com/api";
-
+  readonly API_USERS_URL = "https://w370351.ferozo.com/api/users";
+  readonly API_PRODUCTS_URL = "https://w370351.ferozo.com/api/products";
   
   products = signal<product[]>([]);
 
   async getProductsByRestaurant(restaurantId: string) {
-    const res = await fetch(`${this.API_URL}/Products/restaurant/${restaurantId}`);
+    const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/products`);
     if (!res.ok) return;
     const data = await res.json();
     this.products.set(data);
   }
 
   async getProductById(id: string | number) {
-    const res = await fetch(`${this.API_URL}/Products/${id}`);
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}`);
     if (!res.ok) return undefined;
     return (await res.json()) as product;
   }
 
 
-
+async getMyProducts() {
+     const res = await fetch(`${this.API_PRODUCTS_URL}/me`, {
+       headers: { 'Authorization': `Bearer ${this.authService.token}` }
+     });
+     if (!res.ok) { this.products.set([]); return; };
+     const data = await res.json();
+     this.products.set(data);
+    }
   async createProduct(product: NewProduct) {
-    const res = await fetch(`${this.API_URL}/Products`, {
+    const res = await fetch(this.API_PRODUCTS_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +50,7 @@ export class ProductsService {
   }
 
   async updateProduct(product: product) {
-    const res = await fetch(`${this.API_URL}/Products/${product.id}`, {
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${product.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +66,7 @@ export class ProductsService {
   }
 
   async deleteProduct(id: string | number) {
-    const res = await fetch(`${this.API_URL}/Products/${id}`, {
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${this.authService.token}` }
     });
@@ -71,8 +78,8 @@ export class ProductsService {
   
 
   async setDiscount(id: string | number, discountData: DiscountData) {
-    const res = await fetch(`${this.API_URL}/Products/discount/${id}`, {
-      method: 'PATCH',
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/discount`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.token}`
@@ -83,7 +90,7 @@ export class ProductsService {
   }
 
   async setHappyHour(id: string | number, happyHourData: HappyHourData) {
-     const res = await fetch(`${this.API_URL}/Products/happyhour/${id}`, {
+     const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/happyHour`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

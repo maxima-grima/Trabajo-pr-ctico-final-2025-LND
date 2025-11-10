@@ -7,12 +7,12 @@ import { AuthService } from './auth-service';
 })
 export class CategoriesService {
   authService = inject(AuthService);
-  readonly API_URL = "https://restaurant-api.somee.com/api/Categories";
-
+  readonly API_USERS_URL = "https://w370351.ferozo.com/api/Users";
+  readonly API_CATEGORIES_URL = "https://w370351.ferozo.com/api/Categories";
   categories = signal<Category[]>([]);
 
 
-  
+
   async getCategoriesByRestaurant(restaurantId: string) {
     const res = await fetch(`${this.API_URL}/restaurant/${restaurantId}`);
     if (!res.ok) return;
@@ -36,9 +36,9 @@ export class CategoriesService {
     this.categories.update(current => [...current, newCategory]);
     return newCategory;
   }
-  
+
   async updateCategory(category: Category) {
-     const res = await fetch(`${this.API_URL}/${category.id}`, {
+    const res = await fetch(`${this.API_URL}/${category.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export class CategoriesService {
       body: JSON.stringify(category)
     });
     if (!res.ok) return undefined;
-    this.categories.update(current => 
+    this.categories.update(current =>
       current.map(c => c.id === category.id ? category : c)
     );
     return category;
