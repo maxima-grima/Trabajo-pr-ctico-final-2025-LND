@@ -5,3 +5,7 @@ export interface Category {
 
 }
 export type NewCategory = Omit<Category, "id">;
+
+export interface UpdateCategoryRequestDto {
+  name: string;
+}

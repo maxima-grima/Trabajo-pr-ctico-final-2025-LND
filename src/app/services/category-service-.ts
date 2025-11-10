@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Category, NewCategory } from '../interfaces/category';
+import { Category, NewCategory, UpdateCategoryRequestDto,  } from '../interfaces/category';
 import { AuthService } from './auth-service';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class CategoriesService {
 
 
   async getCategoriesByRestaurant(restaurantId: string) {
-    const res = await fetch(`${this.API_URL}/restaurant/${restaurantId}`);
-    if (!res.ok) return;
+    const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/categories`);
+    if (!res.ok) { this.categories.set([]); return; }
     const data = (await res.json()) as Category[];
     this.categories.set(data);
   }
@@ -23,7 +23,7 @@ export class CategoriesService {
 
 
   async createCategory(category: NewCategory) {
-    const res = await fetch(this.API_URL, {
+    const res = await fetch(`${this.API_CATEGORIES_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,29 +37,38 @@ export class CategoriesService {
     return newCategory;
   }
 
-  async updateCategory(category: Category) {
-    const res = await fetch(`${this.API_URL}/${category.id}`, {
+  async updateCategory(id: number, categoryData: UpdateCategoryRequestDto) {
+    const res = await fetch(`${this.API_CATEGORIES_URL}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.token}`
       },
-      body: JSON.stringify(category)
+      body: JSON.stringify(categoryData)
     });
     if (!res.ok) return undefined;
-    this.categories.update(current =>
-      current.map(c => c.id === category.id ? category : c)
+    const updatedCategory = (await res.json()) as Category;
+
+    this.categories.update(currentCategories => 
+      currentCategories.map(cat => 
+        cat.id === id ? updatedCategory : cat
+      )
     );
-    return category;
+    
+    return updatedCategory;
   }
+  
 
   async deleteCategory(id: string | number) {
-    const res = await fetch(`${this.API_URL}/${id}`, {
+    const res = await fetch(`${this.API_CATEGORIES_URL}/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${this.authService.token}` }
     });
     if (!res.ok) return false;
-    this.categories.update(current => current.filter(c => c.id !== id));
+    this.categories.update(currentCategories => 
+      currentCategories.filter(cat => cat.id !== id)
+    );
+    
     return true;
   }
 }
