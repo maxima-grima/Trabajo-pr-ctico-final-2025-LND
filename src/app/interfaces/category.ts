@@ -1,4 +1,7 @@
 export interface Category {
-    name: string
+    name: string;
+    id: number;
+    restaurantId: number;
 
 }
+export type NewCategory = Omit<Category, "id">;
