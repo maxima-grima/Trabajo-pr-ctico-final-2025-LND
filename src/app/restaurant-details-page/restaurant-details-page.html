@@ -1,15 +1,9 @@
 <div class="contact-details-container">
-  @if(cargandoRestaurante){
-  <p>Cargando restaurante...</p>
-  } @else if(!restaurant){
-  <p>No se encontró el restaurante</p>
-  } @else {
-  <p>Nombre: {{restaurant.restaurantName}}</p>
-  <p>Teléfono: {{restaurant.phoneNumber}}</p>
-<p> Dirección: {{restaurant.adress}}</p>
+  <p>Nombre: {{restaurant?.restaurantName}}</p>
+  <p>Teléfono: {{restaurant?.phoneNumber}}</p>
+  <p> Dirección: {{restaurant?.adress}}</p>
   <p>
     <a routerLink="/">Volver</a>
   </p>
-  
-  }
+
 </div>

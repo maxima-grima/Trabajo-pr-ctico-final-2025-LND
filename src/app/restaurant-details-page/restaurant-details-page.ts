@@ -11,17 +11,12 @@ import { UsersService } from '../services/users-service';
 })
 export class RestaurantDetailsPage implements OnInit{
   usersService = inject(UsersService)
-  restaurant: User | undefined;
+  restaurant: User | undefined = undefined;
   idRestaurant = input.required<string>()
   cargandoRestaurante = false;
   router = inject (Router)
   async ngOnInit() {
-    if(this.idRestaurant()){
-      this.restaurant = this.usersService.users.find(restaurant => restaurant.id.toString() === this.idRestaurant());
-      if(!this.restaurant) this.cargandoRestaurante = true;
-      const res = await this.usersService.getUsersbyId(this.idRestaurant());
-      if(res) this.restaurant = res;
-      this.cargandoRestaurante = false;
-    }
+    this.restaurant = await this.usersService.getUsersbyId(this.idRestaurant()!);
+  
   }
 }
