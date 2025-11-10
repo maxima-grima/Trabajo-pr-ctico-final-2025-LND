@@ -45,7 +45,7 @@ export class UsersService {
   }
 
   async updateUser(id: string | number, userEditado: User) {
-    const res = await fetch(`${this.UrlBase}/${id}`, {
+    const res = await fetch("https://w370351.ferozo.com/api/users/:id", {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -22,15 +22,15 @@ export const routes: Routes = [
     {
         path: "",
         component: GeneralLayout,
+        canActivateChild: [onlyPublicUserGuard],
         children: [
             {
                 path: "",
                 component: Home,
             },
             {
-                path: "restaurant/:restaurantName",
+                path: "restaurant/:idRestaurant",
                 component: RestaurantDetailsPage,
-                canActivate: [onlyPublicUserGuard]
             }
 
         ]
