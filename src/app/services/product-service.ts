@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { product, NewProduct, DiscountData, HappyHourData } from '../interfaces/products';
+import { Product, NewProduct, DiscountData, HappyHourData } from '../interfaces/products';
 import { AuthService } from './auth-service';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class ProductsService {
   readonly API_USERS_URL = "https://w370351.ferozo.com/api/users";
   readonly API_PRODUCTS_URL = "https://w370351.ferozo.com/api/products";
   
-  products = signal<product[]>([]);
+  products = signal<Product[]>([]);
 
   async getProductsByRestaurant(restaurantId: string) {
     const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/products`);
@@ -22,7 +22,7 @@ export class ProductsService {
   async getProductById(id: string | number) {
     const res = await fetch(`${this.API_PRODUCTS_URL}/${id}`);
     if (!res.ok) return undefined;
-    return (await res.json()) as product;
+    return (await res.json()) as Product;
   }
 
 
@@ -44,12 +44,12 @@ async getMyProducts() {
       body: JSON.stringify(product)
     });
     if (!res.ok) return undefined;
-    const newProduct = (await res.json()) as product;
+    const newProduct = (await res.json()) as Product;
     this.products.update(current => [...current, newProduct]);
     return newProduct;
   }
 
-  async updateProduct(product: product) {
+  async updateProduct(product: Product) {
     const res = await fetch(`${this.API_PRODUCTS_URL}/${product.id}`, {
       method: 'PUT',
       headers: {

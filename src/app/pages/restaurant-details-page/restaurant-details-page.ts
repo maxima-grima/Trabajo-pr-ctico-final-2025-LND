@@ -1,9 +1,9 @@
 import { Component, OnInit, input,inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
-import { User } from '../interfaces/user';
-import { UsersService } from '../services/users-service';
-import { ProductsService } from '../services/product-service';
-import { CategoriesService } from '../services/category-service-';
+import { User } from '../../interfaces/user';
+import { UsersService } from '../../services/users-service';
+import { ProductsService } from '../../services/product-service';
+import { CategoriesService } from '../../services/category-service';
 
 @Component({
   selector: 'app-restaurant-details-page',

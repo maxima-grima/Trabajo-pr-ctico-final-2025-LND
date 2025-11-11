@@ -1,17 +1,17 @@
-export interface product {
+export interface Product {
   id: number;
   name: string,
   description: string,
-  price: 0,
+  price: number,
   restaurantId:number,
-  categoryId: 0,
+  categoryId: number,
   IsFeatured: true,
-  recommendedFor: 0,
-  discount: 0,
-  hasHappyHour: true
+  recommendedFor: number,
+  discount: number,
+  hasHappyHour: boolean,
 }
 
-export type NewProduct = Omit<product, "id">;
+export type NewProduct = Omit<Product, "id">;
 
 export interface DiscountData {
   discount: number;

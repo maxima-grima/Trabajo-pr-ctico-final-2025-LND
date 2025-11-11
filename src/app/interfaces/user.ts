@@ -4,7 +4,7 @@ export interface User {
   password: string,
   firstName: string,
   lastName: string,
-  adress: string,
+  address: string,
   phoneNumber: string
 }
 export type NewUser = Omit<User, "id">;

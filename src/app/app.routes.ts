@@ -5,7 +5,7 @@ import { onlyPublicUserGuard } from './guard/only-public-user-guard';
 import { RegisterPage } from './pages/register-page/register-page';
 import { onlyLoggedUserGuard } from './guard/only-loged-user-guard';
 import { CanActivateFn } from '@angular/router';
-import { RestaurantDetailsPage } from './restaurant-details-page/restaurant-details-page';
+import { RestaurantDetailsPage } from './pages/restaurant-details-page/restaurant-details-page';
 import { GeneralLayout } from './layout/general-layout/general-layout';
 export const routes: Routes = [
 
@@ -22,7 +22,6 @@ export const routes: Routes = [
     {
         path: "",
         component: GeneralLayout,
-        canActivateChild: [onlyPublicUserGuard],
         children: [
             {
                 path: "",

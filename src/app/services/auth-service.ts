@@ -5,16 +5,16 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit {
+export class AuthService {
   router = inject(Router);
   token: null | string = localStorage.getItem("token");
   revisionTokenInterval: number | undefined;
-
-  ngOnInit(): void {
-    if (this.token) {
+  
+constructor(){
+  if (this.token) {
       this.revisionTokenInterval = this.revisionToken()
-    }
-  }
+}
+}
 
   async login(loginData: LoginData) {
     const res = await fetch("https://w370351.ferozo.com/api/Authentication/login",
