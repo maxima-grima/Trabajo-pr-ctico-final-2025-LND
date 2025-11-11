@@ -45,7 +45,7 @@ export class UsersService {
   }
 
   async updateUser(id: string | number, userEditado: User) {
-    const res = await fetch('${this.UrlBase}/${id}', {
+    const res = await fetch(`${this.UrlBase}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

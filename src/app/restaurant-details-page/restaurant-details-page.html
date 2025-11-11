@@ -1,9 +1,48 @@
 <div class="contact-details-container">
-  {{restaurant?.restaurantName}}
-  {{restaurant?.phoneNumber}}
-  {{restaurant?.adress}}
-  <p>
-    <a routerLink="/">Volver</a>
-  </p>
+  @if(cargandoInfo){
+    <p>Cargando información del restaurante...</p>
+  } @else if(!restaurant){
+    <p>No se encontró el restaurante</p>
+  } @else {
+    <h2>Menú de: {{restaurant.restaurantName}}</h2>
+    <p>Teléfono: {{restaurant.phoneNumber}}</p>
+    <p>Dirección: {{restaurant.adress}}</p>
 
+    <hr>
+
+    <h3>Nuestro Menú</h3>
+
+    @if (products().length === 0) {
+      <p>Este restaurante aún no ha cargado productos en su menú.</p>
+    } @else {
+      <ul class="menu-list">
+        @for (product of products(); track product.id) {
+          <li class="menu-item">
+            
+            @if (product.IsFeatured) {
+              <span class=" featured">⭐ Destacado</span>
+            }
+
+            <strong>{{ product.name }}</strong>
+            
+            @if (product.discount > 0) {
+              <span class=" discount">{{ product.discount }}% OFF</span>
+            }
+            @if (product.hasHappyHour) {
+              <span class=" happy-hour">🎉 Happy Hour!</span>
+            }
+
+            <p>{{ product.description }}</p>
+            <p>Precio: $ {{ product.price }}</p>
+            <p>Categoría: {{ getCategoryName(product.categoryId) }}</p>
+            
+            </li>
+        }
+      </ul>
+    }
+    
+    <p>
+      <a routerLink="/">Volver</a>
+    </p>
+  }
 </div>
