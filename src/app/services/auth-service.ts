@@ -36,7 +36,7 @@ constructor(){
   logout() {
     this.token = null;
     localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/"]);
   }
 
   revisionToken() {

@@ -7,6 +7,7 @@ import { onlyLoggedUserGuard } from './guard/only-loged-user-guard';
 import { CanActivateFn } from '@angular/router';
 import { RestaurantDetailsPage } from './pages/restaurant-details-page/restaurant-details-page';
 import { GeneralLayout } from './layout/general-layout/general-layout';
+import { AdminLayout } from './layout/admin-layout/admin-layout';
 export const routes: Routes = [
 
     {
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {
         path: "",
         component: GeneralLayout,
+        canActivate: [onlyPublicUserGuard],
         children: [
             {
                 path: "",
@@ -31,6 +33,14 @@ export const routes: Routes = [
                 path: "restaurant/:idRestaurant",
                 component: RestaurantDetailsPage,
             }
+
+        ]
+    },
+    {
+        path: "admin",
+        component: AdminLayout,
+        canActivate: [onlyLoggedUserGuard],
+        children: [
 
         ]
     }
