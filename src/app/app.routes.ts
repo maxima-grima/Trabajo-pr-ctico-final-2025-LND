@@ -43,9 +43,13 @@ export const routes: Routes = [
         canActivate: [onlyLoggedUserGuard],
         children: [
             {
-                path: "new-edit-product",
+                path: "newproduct",
                 component: NewEditProductPage,
             },
+            {
+                path:"editproduct",
+                component:NewEditProductPage
+            }
         ]
     }
 ];
