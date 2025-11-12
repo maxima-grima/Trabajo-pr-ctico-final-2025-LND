@@ -6,6 +6,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ProductsService } from '../../services/product-service';
 import { AuthService } from '../../services/auth-service';
 import { CategoriesService } from '../../services/category-service';
+import { Category } from '../../interfaces/category';
 @Component({
   selector: 'app-new-edit-product-page',
   imports: [FormsModule],
@@ -20,6 +21,7 @@ export class NewEditProductPage {
   idProducto= input<number>();
   router=inject(Router)
   productoOriginal: Product | undefined = undefined;
+  categories: Category[] = [];
   form = viewChild<NgForm>(`newProductForm`);
   errorBack=false;
   isLoading = false;
@@ -38,7 +40,7 @@ export class NewEditProductPage {
         HappyHour: this.productoOriginal!.hasHappyHour,
       })
     }
-
+    await this.categoriesService.getCategoriesByRestaurant(this.authService.getUserId());
   }
   async handleFormSubmission(form: NgForm) {
     this.errorBack = false;

@@ -8,6 +8,7 @@ import { CanActivateFn } from '@angular/router';
 import { RestaurantDetailsPage } from './pages/restaurant-details-page/restaurant-details-page';
 import { GeneralLayout } from './layout/general-layout/general-layout';
 import { AdminLayout } from './layout/admin-layout/admin-layout';
+import { NewEditProductPage } from './pages/new-edit-product-page/new-edit-product-page';
 export const routes: Routes = [
 
     {
@@ -41,7 +42,10 @@ export const routes: Routes = [
         component: AdminLayout,
         canActivate: [onlyLoggedUserGuard],
         children: [
-
+            {
+                path: "new-edit-product",
+                component: NewEditProductPage,
+            },
         ]
     }
 ];
