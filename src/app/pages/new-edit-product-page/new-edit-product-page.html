@@ -1,0 +1,9 @@
+<div>
+    @if (idProducto()) {
+        <h2>Editar Producto</h2>
+    }
+    @else {
+        <h2>Nuevo Producto</h2>
+    }
+    <form (ngSubmit)="handleFormSubmission(newProductForm)" #newProductForm="ngForm"></form>
+</div>
