@@ -23,7 +23,7 @@
         <input id="hasHappyHour" type="text" name="hasHappyHour" placeholder="">
         
         <select name="category" id="category">
-            @for (category of this.categoryService.categories) {
+            @for (category of this.categoriesService.getCategoriesByRestaurant(this.authService.getUserId()); track $index) {
                 <option [value]="category.id">{{ category.name }}</option>    
             }
         </select>
