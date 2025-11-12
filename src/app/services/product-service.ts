@@ -12,7 +12,7 @@ export class ProductsService {
   
   products = signal<Product[]>([]);
 
-  async getProductsByRestaurant(restaurantId: string) {
+  async getProductsByRestaurant(restaurantId: number) {
     const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/products`);
     if (!res.ok) return;
     const data = await res.json();

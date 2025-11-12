@@ -14,7 +14,7 @@ import { CategoriesService } from '../../services/category-service';
 export class RestaurantDetailsPage implements OnInit{
   usersService = inject(UsersService)
   restaurant: User | undefined = undefined;
-  idRestaurant = input<string>();
+  idRestaurant = input<number>();
   productsService = inject(ProductsService);
   categoriesService = inject(CategoriesService)
   cargandoInfo = false;
@@ -24,7 +24,7 @@ export class RestaurantDetailsPage implements OnInit{
     const restaurantId = this.idRestaurant();
     if((restaurantId)){
       this.cargandoInfo = true;
-      this.restaurant = this.usersService.users.find(r => r.id.toString() === restaurantId);
+      this.restaurant = this.usersService.users.find(r => r.id === restaurantId);
       if(!this.restaurant) {
         this.restaurant = await this.usersService.getUsersbyId(restaurantId);
       }
