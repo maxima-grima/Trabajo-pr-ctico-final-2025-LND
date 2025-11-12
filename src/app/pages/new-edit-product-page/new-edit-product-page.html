@@ -6,22 +6,27 @@
         <h2>Nuevo Producto</h2>
     }
     <form (ngSubmit)="handleFormSubmission(newProductForm)" #newProductForm="ngForm">
-        <label for="name"></label>
-        <input type="text" name="" id="">
-        <label for="description"></label>
-        <input type="text">
-        <label for="price"></label>
-        <input type="text" name="" id="">
-        <label for="IsFeatured"></label>
-        <input type="text">
-        <label for="recommendedFor"></label>
-        <input type="text" name="" id="">
-        <label for="discount"></label>
-        <input type="text" name="" id="">
-        <label for="hasHappyHour"></label>
-        <input type="text" name="" id="">
-        <label for="category"></label>
-        <input type="text" name="" id="">
+        <input id="name" type="text" name="name" placeholder="Nombre del Producto" ngModel #name="ngModel" required>
+
+        <input id="description" type="text" name="description" placeholder="Descripción del Producto" ngModel #description="ngModel" required>
+        
+        <input id="price" type="text" name="price" placeholder="Precio" ngModel #price="ngModel" required>
+        
+        <label for="IsFeatured">¿Desea destacar su producto?</label>
+        <input id="IsFeatured" type="checkbox" name="IsFeatured" ngModel #IsFeatured="ngModel"> 
+        
+        <input id="recommendedFor" type="text" name="recommendedFor" placeholder="Recomendado para: " ngModel #recommendedFor="ngModel" >
+        
+        <input id="discount" type="text" name="discount" placeholder="Descuento del producto" ngModel #discount="ngModel">
+        
+        <label for="hasHappyHour">¿Su producto tiene Happy Hour?</label>
+        <input id="hasHappyHour" type="text" name="hasHappyHour" placeholder="">
+        
+        <select name="category" id="category">
+            @for (category of this.categoryService.categories) {
+                <option [value]="category.id">{{ category.name }}</option>    
+            }
+        </select>
     </form>
     
 </div>

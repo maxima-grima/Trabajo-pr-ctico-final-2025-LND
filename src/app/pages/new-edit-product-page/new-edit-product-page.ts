@@ -2,12 +2,13 @@ import { Component, inject, input, viewChild } from '@angular/core';
 import { UsersService } from '../../services/users-service';
 import { Router } from '@angular/router';
 import { NewProduct, Product } from '../../interfaces/products';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ProductsService } from '../../services/product-service';
 import { AuthService } from '../../services/auth-service';
+import { CategoriesService } from '../../services/category-service';
 @Component({
   selector: 'app-new-edit-product-page',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './new-edit-product-page.html',
   styleUrl: './new-edit-product-page.scss'
 })
@@ -15,6 +16,7 @@ export class NewEditProductPage {
   restaurantService=inject(UsersService)
   productService=inject(ProductsService)
   authService = inject(AuthService)
+  categoriesService = inject(CategoriesService)
   idProducto= input<number>();
   router=inject(Router)
   productoOriginal: Product | undefined = undefined;
@@ -29,7 +31,7 @@ export class NewEditProductPage {
       this.form()?.setValue({
         Name: this.productoOriginal!.name,
         Descripcion: this.productoOriginal!.description,
-        Precio: this.productoOriginal!.price,
+        Price: this.productoOriginal!.price,
         Destacado: this.productoOriginal!.IsFeatured,
         Recomendado: this.productoOriginal!.recommendedFor,
         Descuento: this.productoOriginal!.discount,
