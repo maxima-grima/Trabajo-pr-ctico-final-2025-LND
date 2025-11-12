@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NewProduct, Product } from '../../interfaces/products';
 import { NgForm } from '@angular/forms';
 import { ProductsService } from '../../services/product-service';
+import { AuthService } from '../../services/auth-service';
 @Component({
   selector: 'app-new-edit-product-page',
   imports: [],
@@ -13,6 +14,7 @@ import { ProductsService } from '../../services/product-service';
 export class NewEditProductPage {
   restaurantService=inject(UsersService)
   productService=inject(ProductsService)
+  authService = inject(AuthService)
   idProducto= input<number>();
   router=inject(Router)
   productoOriginal: Product | undefined = undefined;
@@ -46,15 +48,15 @@ export class NewEditProductPage {
       recommendedFor: form.value.Recomendado,
       discount: form.value.Descuento,
       hasHappyHour: form.value.HappyHour,
-      categoryId: form.value.categoryId
-      restaurantId: ,
+      categoryId: form.value.categoryId,
+      restaurantId: this.authService.getUserId() ,
     }
     let res;
     this.isLoading = true;
     if (this.idProducto()) {
       res = await this.productService.updateProduct({
         ...nuevoProducto,
-        id: this.idProducto()!.toString()
+        id: this.idProducto()!
       });
     } else {
       res = await this.productService.createProduct(nuevoProducto);
@@ -69,5 +71,4 @@ export class NewEditProductPage {
 
     this.router.navigate(["/admin", res.id]);
   }
-}
 }
