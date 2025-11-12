@@ -9,6 +9,7 @@ import { RestaurantDetailsPage } from './pages/restaurant-details-page/restauran
 import { GeneralLayout } from './layout/general-layout/general-layout';
 import { AdminLayout } from './layout/admin-layout/admin-layout';
 import { NewEditProductPage } from './pages/new-edit-product-page/new-edit-product-page';
+import { MenuAdmin } from './pages/menu-admin/menu-admin';
 export const routes: Routes = [
 
     {
@@ -42,6 +43,10 @@ export const routes: Routes = [
         component: AdminLayout,
         canActivate: [onlyLoggedUserGuard],
         children: [
+            {
+                path: "",
+                component: MenuAdmin,
+            },
             {
                 path: "newproduct",
                 component: NewEditProductPage,

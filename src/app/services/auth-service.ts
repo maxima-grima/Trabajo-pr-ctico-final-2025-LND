@@ -27,7 +27,6 @@ constructor(){
     if (res.ok) {
       this.token = await res.text()
       localStorage.setItem("token", this.token);
-      this.router.navigate(["/admin"])
       return true;
     }
     return false;
