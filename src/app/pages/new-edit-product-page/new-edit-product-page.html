@@ -39,8 +39,8 @@
             <input id="hasHappyHour" type="checkbox" name="hasHappyHour" placeholder="">
         </div>
         <div> 
-            <label for="category">Categoría</label>
-            <select name="category" id="category" required>
+            <label for="categoryId">Categoría</label>
+            <select name="categoryId" id="categoryId" required>
             @for (category of this.categoriesService.categories(); track $index) {
                 <option [value]="category.id">{{ category.name }}</option>    
             } 

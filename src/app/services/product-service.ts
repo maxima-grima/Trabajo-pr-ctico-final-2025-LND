@@ -35,11 +35,15 @@ async getMyProducts() {
      this.products.set(data);
     }
   async createProduct(product: NewProduct) {
+
+    console.log('Token siendo enviado:', this.authService.token);
+    console.log('Token tipo:', typeof this.authService.token);
+
     const res = await fetch(this.API_PRODUCTS_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.token}`
+        'Authorization': `Bearer ${this.authService.token}`,
       },
       body: JSON.stringify(product)
     });
@@ -54,7 +58,7 @@ async getMyProducts() {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.token}`
+        'Authorization': `Bearer ${this.authService.token}`,
       },
       body: JSON.stringify(product)
     });
