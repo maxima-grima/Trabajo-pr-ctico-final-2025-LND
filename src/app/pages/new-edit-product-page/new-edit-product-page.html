@@ -6,27 +6,55 @@
         <h2>Nuevo Producto</h2>
     }
     <form (ngSubmit)="handleFormSubmission(newProductForm)" #newProductForm="ngForm">
-        <input id="name" type="text" name="name" placeholder="Nombre del Producto" ngModel #name="ngModel" required>
-
-        <input id="description" type="text" name="description" placeholder="Descripción del Producto" ngModel #description="ngModel" required>
-        
-        <input id="price" type="text" name="price" placeholder="Precio" ngModel #price="ngModel" required>
-        
-        <label for="IsFeatured">¿Desea destacar su producto?</label>
-        <input id="IsFeatured" type="checkbox" name="IsFeatured" ngModel #IsFeatured="ngModel"> 
-        
-        <input id="recommendedFor" type="text" name="recommendedFor" placeholder="Recomendado para: " ngModel #recommendedFor="ngModel" >
-        
-        <input id="discount" type="text" name="discount" placeholder="Descuento del producto" ngModel #discount="ngModel">
-        
-        <label for="hasHappyHour">¿Su producto tiene Happy Hour?</label>
-        <input id="hasHappyHour" type="text" name="hasHappyHour" placeholder="">
-        
-        <select name="category" id="category">
+        <div>        
+            <input id="name" type="text" name="name" placeholder="Nombre del Producto" ngModel #name="ngModel" required="true">
+            @if (name.dirty && name.invalid) {
+                <p class="error">El nombre es obligatorio y no puede ser una sola letra</p>
+            }
+        </div>
+        <div>        
+            <input id="description" type="text" name="description" placeholder="Descripción del Producto" ngModel #description="ngModel" required="true">
+            @if (description.dirty && description.invalid) {
+                <p class="error">La descripción del producto es obligatoria</p>
+            }
+        </div>
+        <div>      
+            <input id="price" type="text" name="price" placeholder="Precio" ngModel #price="ngModel" required="true">
+            @if (price.dirty && price.invalid) {
+                <p class="error">Introduzca el precio del producto</p>
+            }
+        </div>
+        <div>        
+            <label for="IsFeatured">¿Desea destacar su producto?</label>
+            <input id="IsFeatured" type="checkbox" name="IsFeatured" ngModel #IsFeatured="ngModel"> 
+        </div>
+        <div>        
+            <input id="recommendedFor" type="text" name="recommendedFor" placeholder="Recomendado para: " ngModel #recommendedFor="ngModel" >
+        </div>
+        <div>        
+            <input id="discount" type="text" name="discount" placeholder="Descuento del producto" ngModel #discount="ngModel">
+        </div>
+        <div>        
+            <label for="hasHappyHour">¿Su producto tiene Happy Hour?</label>
+            <input id="hasHappyHour" type="checkbox" name="hasHappyHour" placeholder="">
+        </div>
+        <div> 
+            <label for="category">Categoría</label>
+            <select name="category" id="category" required>
             @for (category of this.categoriesService.categories(); track $index) {
                 <option [value]="category.id">{{ category.name }}</option>    
-            }
-        </select>
+            } 
+            </select>
+        </div>        
+        
+        @if (idProducto()) {
+            <button [disabled]="newProductForm.invalid || isLoading">Editar</button>
+        } @else {   
+            <button [disabled]="newProductForm.invalid || isLoading">+</button>
+        }
+
+        @if (isLoading) {
+         <app-spinner></app-spinner>
+        }
     </form>
-    
 </div>
