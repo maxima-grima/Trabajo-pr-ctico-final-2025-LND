@@ -15,7 +15,10 @@ export class CategoriesService {
 
   async getCategoriesByRestaurant(restaurantId: number) {
     const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/categories`);
-    if (!res.ok) { this.categories.set([]); return; }
+    if (!res.ok) { 
+      this.categories.set([]); 
+      return; 
+    }
     const data = (await res.json()) as Category[];
     this.categories.set(data);
   }

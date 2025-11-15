@@ -10,6 +10,7 @@ import { GeneralLayout } from './layout/general-layout/general-layout';
 import { AdminLayout } from './layout/admin-layout/admin-layout';
 import { NewEditProductPage } from './pages/new-edit-product-page/new-edit-product-page';
 import { MenuAdmin } from './pages/menu-admin/menu-admin';
+import { NewEditCategoryPage } from './pages/new-edit-category-page/new-edit-category-page';
 export const routes: Routes = [
 
     {
@@ -52,8 +53,12 @@ export const routes: Routes = [
                 component: NewEditProductPage,
             },
             {
-                path:"editproduct",
-                component:NewEditProductPage
+                path: "editproduct",
+                component: NewEditProductPage,
+            },
+            {
+                path: "newcategory",
+                component: NewEditCategoryPage,
             }
         ]
     }

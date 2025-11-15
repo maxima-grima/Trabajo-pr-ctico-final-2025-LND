@@ -5,9 +5,8 @@ import { ProductsService } from '../../services/product-service';
 import { UsersService } from '../../services/users-service';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Category } from '../../interfaces/category';
+import { Category, NewCategory, UpdateCategoryRequestDto } from '../../interfaces/category';
 import { Spinner } from "../../Components/spinner/spinner";
-import { NewProduct } from '../../interfaces/products';
 
 @Component({
   selector: 'app-new-edit-category-page',
@@ -16,49 +15,50 @@ import { NewProduct } from '../../interfaces/products';
   styleUrl: './new-edit-category-page.scss'
 })
 export class NewEditCategoryPage {
-  restaurantService=inject(UsersService)
-  productService=inject(ProductsService)
   authService = inject(AuthService)
   categoryService = inject(CategoriesService)
-  idCategory = input<number>(); 
   router=inject(Router)
+
+  idCategory = input<number>();   
   categoryOriginal: Category | undefined = undefined;
-  idUser = this.authService.getUserId();
-  form = viewChild<NgForm>(`newProductForm`);
+  form = viewChild<NgForm>(`newCategoryForm`);
   errorBack=false;
   isLoading = false;  
 
   async ngOnInit() {
-    if (this.idCategory()) {
-      this.categoryOriginal = await this.categoryService.getCategoriesByRestaurant(this.idUser);
-      this.form()?.setValue({
-        Name: this.categoryOriginal!.name,
-      })
+    // Obtener la categoría específica para editar
+      const allCategories = this.categoryService.categories();
+      this.categoryOriginal = allCategories.find(cat => cat.id === this.idCategory());
+      
+      if (this.categoryOriginal) {
+        this.form()?.setValue({
+          name: this.categoryOriginal.name,
+        });
+      } else {
+      // Cargar todas las categorías del restaurante
+      await this.categoryService.getCategoriesByRestaurant(this.authService.getUserId());
     }
-    await this.categoriesService.getCategoriesByRestaurant(this.authService.getUserId());
-  }
+  }  
+
   async handleFormSubmission(form: NgForm) {
     this.errorBack = false;
-    const nuevoProducto: NewProduct = {
+    const nuevaCategory: NewCategory = {
       name: form.value.name,
-      description: form.value.Descripcion,
-      price: form.value.Precio,
-      IsFeatured: form.value.Destacado,
-      recommendedFor: form.value.Recomendado,
-      discount: form.value.Descuento,
-      hasHappyHour: form.value.HappyHour,
-      categoryId: form.value.categoryId,
       restaurantId: this.authService.getUserId() ,
     }
+
     let res;
     this.isLoading = true;
-    if (this.idProducto()) {
-      res = await this.productService.updateProduct({
-        ...nuevoProducto,
-        id: this.idProducto()!
-      });
+
+    if (this.idCategory()) {
+      //Edita categoría existente
+      const updateData: UpdateCategoryRequestDto = {
+        name: nuevaCategory.name
+      }
+      res = await this.categoryService.updateCategory(this.idCategory()!, updateData);
     } else {
-      res = await this.productService.createProduct(nuevoProducto);
+      // Crear nueva categoría
+      res = await this.categoryService.createCategory(nuevaCategory);
     }
 
     this.isLoading = false;
