@@ -1,12 +1,13 @@
-<div>
+<div class="general-container">
     @if (idCategory()) {
-        <h2>Editar Producto</h2>
+        <h2>Editar Categoría</h2>
     }
     @else {
-        <h2>Nuevo Producto</h2>
+        <h2>Nueva Categoría</h2>
     }
-    <form (ngSubmit)="handleFormSubmission(newCategoryForm)" #newCategoryForm="ngForm">
-        <div>        
+    <div class="form-section">
+        <form (ngSubmit)="handleFormSubmission(newCategoryForm)" #newCategoryForm="ngForm">
+        <div class="form-group">        
             <input id="name" type="text" name="name" placeholder="Nombre de la categoría" ngModel #name="ngModel" required="true">
             @if (name.dirty && name.invalid) {
                 <p class="error">El nombre es obligatorio y no puede ser una sola letra</p>
@@ -14,14 +15,18 @@
         </div>               
         
         @if (idCategory()) {
-            <button [disabled]="newCategoryForm.invalid || isLoading">Editar</button>
+            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Editar</button>
         } @else {   
-            <button [disabled]="newCategoryForm.invalid || isLoading">+</button>
+            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">+</button>
         }
 
         @if (isLoading) {
          <app-spinner></app-spinner>
         }
-    </form>
+        </form>
+    </div>
 </div>
 
+
+    
+    

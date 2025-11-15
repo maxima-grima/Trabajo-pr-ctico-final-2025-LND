@@ -30,7 +30,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: #f7c59f !important
+	background-color: #f7c59f !important;
+	color: var(--color-text-primary) !important;
 }
 ol, ul {
 	list-style: none;
@@ -50,6 +51,7 @@ table {
 h1{
 	padding-bottom: 10px;
 	font-size: 30px;
+	
 }
 
 :root {
@@ -65,4 +67,73 @@ h1{
 a{
 	text-decoration: none !important; 
 	color: var(--color-text-primary);
+}
+
+.general-container{
+	padding-top: 2rem;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+// .form-group{
+// 	display: flex;
+//     flex-direction: column;
+//     margin-bottom: 0.5rem;
+//     align-items: center;
+// 	checkbox{
+// 		display: flex;
+// 		flex-direction: row;
+// 		flex-wrap: wrap;
+// 	}
+.form-section{
+	background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+	
+	form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}	
+
+	.form-group {
+      margin-bottom: 10px;
+
+      input[type="checkbox"] {
+		accent-color: var(--color-text-primary); 
+		border: 1px solid transparent;
+		background-color: var(--color-primary);
+		height: 17px;
+		width: 17px;
+		text-align: center;
+		color: var(--color-bg);
+	  }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 15px;
+        transition: border-color 0.3s;
+	  }
+	}
+}
+
+.btn-body{
+    background-color: var(--color-primary);
+    color: #efefd0;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+	max-width: fit-content;
+}
+.btn-body:hover{
+    background-color: #efefd0;
+    color: var(--color-primary);
 }
