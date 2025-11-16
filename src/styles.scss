@@ -32,6 +32,7 @@ body {
 	line-height: 1;
 	background-color: #f7c59f !important;
 	color: var(--color-text-primary) !important;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -76,16 +77,6 @@ a{
     align-items: center;
     flex-wrap: nowrap;
 }
-// .form-group{
-// 	display: flex;
-//     flex-direction: column;
-//     margin-bottom: 0.5rem;
-//     align-items: center;
-// 	checkbox{
-// 		display: flex;
-// 		flex-direction: row;
-// 		flex-wrap: wrap;
-// 	}
 .form-section{
 	background: #f9f9f9;
     padding: 1rem;

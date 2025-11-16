@@ -1,48 +1,79 @@
 <div class="contact-details-container">
   @if(cargandoInfo){
-    <p>Cargando información del restaurante...</p>
+    <div class="loading">
+      <p>Cargando información del restaurante...</p>
+    </div>
   } @else if(!restaurant){
     <p>No se encontró el restaurante</p>
   } @else {
-    <h2>Menú de: {{restaurant.restaurantName}}</h2>
-    <p>Teléfono: {{restaurant.phoneNumber}}</p>
-    <p>Dirección: {{restaurant.address}}</p>
+  
+    <div class="restaurant-header">
+      <div class="header-content">
+        <h2>{{ restaurant.restaurantName }}</h2>
+        <div class="restaurant-info">
+          <p>📞 {{ restaurant.phoneNumber }}</p>
+          <p>📍 {{ restaurant.address }}</p>
+        </div>
+      </div>
+    </div>
 
-    <hr>
+    <div class="menu-section">
+      <h3>Nuestro Menú</h3>
 
-    <h3>Nuestro Menú</h3>
+      @if (products().length === 0) {
+        <p class="no-products">Este restaurante aún no ha cargado productos en su menú.</p>
+      } @else {
+        <div class="categories-nav">
+          @for (category of categories(); track category.id) {
+            <button 
+              class="category-filter"
+              (click)="selectCategory(category.id)"
+              [class.active]="selectedCategoryId() === category.id">
+              {{ category.name }}
+            </button>
+          }
+        </div>
 
-    @if (products().length === 0) {
-      <p>Este restaurante aún no ha cargado productos en su menú.</p>
-    } @else {
-      <ul class="menu-list">
-        @for (product of products(); track product.id) {
-          <li class="menu-item">
-            
-            @if (product.IsFeatured) {
-              <span class=" featured">⭐ Destacado</span>
-            }
+        <div class="products-grid">
+          @for (product of getFilteredProducts(); track product.id) {
+            <div class="product-card"
+              [class.has-discount]="product.discount > 0"
+              [class.featured]="product.IsFeatured"
+              [class.happy-hour]="product.hasHappyHour">
+              
+              <div class="badges">
+                @if (product.IsFeatured) {
+                  <span class="badge badge-featured">★ Destacado</span>
+                }
+                @if (product.discount > 0) {
+                  <span class="badge badge-discount">-{{ product.discount }}%</span>
+                }
+                @if (product.hasHappyHour) {
+                  <span class="badge badge-happy-hour">🎉 Happy Hour</span>
+                }
+              </div>
 
-            <strong>{{ product.name }}</strong>
-            
-            @if (product.discount > 0) {
-              <span class=" discount">{{ product.discount }}% OFF</span>
-            }
-            @if (product.hasHappyHour) {
-              <span class=" happy-hour">🎉 Happy Hour!</span>
-            }
+              <div class="product-content">
+                <h4>{{ product.name }}</h4>
+                <p class="description">{{ product.description }}</p>
+                <p class="category-name">{{ getCategoryName(product.categoryId) }}</p>
+                
+                <div class="price-section">
+                  @if (product.discount > 0) {
+                    <span class="original-price">${{ product.price.toFixed(2) }}</span>
+                  }
+                  <span class="final-price">${{ getFinalPrice(product).toFixed(2) }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
 
-            <p>{{ product.description }}</p>
-            <p>Precio: $ {{ product.price }}</p>
-            <p>Categoría: {{ getCategoryName(product.categoryId) }}</p>
-            
-            </li>
-        }
-      </ul>
-    }
-    
-    <p>
-      <a routerLink="/">Volver</a>
-    </p>
+    <!-- Back Button -->
+    <div class="back-button">
+      <a routerLink="/">← Volver</a>
+    </div>
   }
 </div>

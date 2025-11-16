@@ -1,0 +1,253 @@
+.contact-details-container {
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    font-size: 1.2rem;
+    color: #004e89;
+}
+
+.restaurant-header {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 20px rgba(0, 78, 137, 0.15);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.restaurant-header h2 {
+    font-size: 2.5rem;
+    color: #004e89;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.restaurant-info {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    p {
+        font-size: 1.1rem;
+        color: #666;
+        margin: 0;
+    }
+}
+
+.menu-section {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 6px 20px rgba(0, 78, 137, 0.15);
+
+    h3 {
+    font-size: 2rem;
+    color: var(---color-primary); 
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--color-secondary);
+    }
+}
+
+.no-products {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 1.1rem;
+}
+
+.categories-nav {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.category-filter {
+    padding: 10px 20px;
+    border: 2px solid #efefd0;
+    background: #efefd0;
+    color: #004e89;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-filter:hover {
+    border-color: #f7c59f;
+    background: #f7c59f;
+    transform: translateY(-2px);
+}
+
+.category-filter.active {
+    background: #004e89;
+    color: white;
+    border-color: #004e89;
+    box-shadow: 0 4px 12px rgba(0, 78, 137, 0.3);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 78, 137, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 78, 137, 0.15);
+}
+
+.product-card.featured {
+    border-color: #f7c59f;
+    background: #fffbf5;
+}
+
+.product-card.has-discount {
+    border-color: #ff6b35;
+}
+
+.product-card.happy-hour {
+    border-color: #3da7ff;
+    background: #f0f8ff;
+}
+
+.badges {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.badge-featured {
+    background: linear-gradient(135deg, #f7c59f 0%, #ff6b35 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.badge-discount {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+}
+
+.badge-happy-hour {
+    background: linear-gradient(135deg, #3da7ff 0%, #5ab8ff 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(61, 167, 255, 0.3);
+}
+
+.product-content {
+    padding: 20px;
+    
+    h4 {
+    font-size: 1.2rem;
+    color: #004e89;
+    margin-bottom: 8px;
+    font-weight: 600;
+    }
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.category-name {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.price-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.original-price {
+    font-size: 0.95rem;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.final-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #004e89;
+}
+
+.product-card.has-discount .final-price {
+    color: #ff6b35;
+}
+
+.product-card.happy-hour .final-price {
+    color: #3da7ff;
+}
+
+.back-button {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-button a {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #004e89;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 78, 137, 0.2);
+}
+
+.back-button a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 78, 137, 0.3);
+}
