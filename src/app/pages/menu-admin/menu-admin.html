@@ -20,7 +20,6 @@
     </div>
 </div>
 
-  <!-- Contenido de Categorías -->
   @if (activeTab === 'categories') {
     <div class="tab-content">
       <div class="content-header">
@@ -41,7 +40,6 @@
             <div class="item-card">
               <div class="item-info">
                 <h3>{{ category.name }}</h3>
-                <p class="item-meta">ID: {{ category.id }} • Restaurante: {{ category.restaurantId }}</p>
               </div>
               <div class="item-actions">
                 <button 
@@ -66,7 +64,6 @@
     </div>
   }
 
-  <!-- Contenido de Productos -->
   @if (activeTab === 'products') {
     <div class="tab-content">
       <div class="content-header">
