@@ -20,8 +20,7 @@ export class LoginPage {
   router = inject(Router);
 
   async login(form: any) {
-    console.log(form.value)
-
+    
     this.errorLogin = false;
 
     if (!form.value.restaurantName || !form.value.password) {

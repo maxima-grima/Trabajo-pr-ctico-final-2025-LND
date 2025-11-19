@@ -44,7 +44,7 @@ export class NewEditProductPage {
     await this.categoriesService.getCategoriesByRestaurant(this.authService.getUserId());
   }
   async handleFormSubmission(form: NgForm) {
-    console.log(form.value);
+    
     this.errorBack = false;
     const nuevoProducto: NewProduct = {
       name: form.value.name,

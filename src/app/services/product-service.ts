@@ -36,9 +36,6 @@ async getMyProducts() {
     }
   async createProduct(product: NewProduct) {
 
-    console.log('Token siendo enviado:', this.authService.token);
-    console.log('Token tipo:', typeof this.authService.token);
-
     const res = await fetch(this.API_PRODUCTS_URL, {
       method: 'POST',
       headers: {
