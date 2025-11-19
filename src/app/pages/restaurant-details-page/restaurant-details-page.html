@@ -59,12 +59,18 @@
                 @if (product.recommendedFor) {
                     <span>👥 {{ product.recommendedFor }}</span>
                   }
+                
                 <p class="category-name">{{ getCategoryName(product.categoryId) }}</p>                
                 <div class="price-section">
+                  
                   @if (product.discount > 0) {
                     <span class="original-price">${{ product.price.toFixed(2) }}</span>
                   }
                   <span class="final-price">${{ getFinalPrice(product).toFixed(2) }}</span>
+                  
+                  @if (product.hasHappyHour) {
+                  <span class="promo">2x1</span>
+                  }
                 </div>
               </div>
             </div>

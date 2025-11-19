@@ -52,11 +52,11 @@
     box-shadow: 0 6px 20px rgba(0, 78, 137, 0.15);
 
     h3 {
-    font-size: 2rem;
-    color: var(---color-primary); 
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid var(--color-secondary);
+        font-size: 2rem;
+        color: var(---color-primary);
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid var(--color-secondary);
     }
 }
 
@@ -158,31 +158,31 @@
 }
 
 .badge-featured {
-    background: linear-gradient(135deg, #f7c59f 0%, #ff6b35 100%);
+    background: #ff6b35;
     color: white;
     box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
 }
 
 .badge-discount {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%);
+    background: #ff6b35;
     color: white;
     box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
 }
 
 .badge-happy-hour {
-    background: linear-gradient(135deg, #3da7ff 0%, #5ab8ff 100%);
+    background: #3da7ff;
     color: white;
     box-shadow: 0 2px 8px rgba(61, 167, 255, 0.3);
 }
 
 .product-content {
     padding: 20px;
-    
+
     h4 {
-    font-size: 1.2rem;
-    color: #004e89;
-    margin-bottom: 8px;
-    font-weight: 600;
+        font-size: 1.2rem;
+        color: #004e89;
+        margin-bottom: 8px;
+        font-weight: 600;
     }
 }
 
@@ -191,9 +191,9 @@
     color: #666;
     margin-bottom: 12px;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    // display: -webkit-box;
+    // -webkit-box-orient: vertical;
+    // overflow: hidden;
 }
 
 .category-name {
@@ -221,12 +221,19 @@
     color: #004e89;
 }
 
+
 .product-card.has-discount .final-price {
     color: #ff6b35;
 }
 
 .product-card.happy-hour .final-price {
     color: #3da7ff;
+}
+
+.product-card.happy-hour .promo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #348dd6;
 }
 
 .back-button {

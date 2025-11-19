@@ -43,9 +43,7 @@
               </div>
               <div class="item-actions">
                 <button 
-                  class="btn btn-edit"
-                  (click)="editCategory(category.id)"
-                  [disabled]="isLoading"
+                  class="btn btn-edit" [routerLink]="['category',category.id,'edit']" [disabled]="isLoading"
                 >
                   ✏️ Editar
                 </button>

@@ -51,10 +51,6 @@ export class MenuAdminComponent implements OnInit {
     this.router.navigate(['/admin/categories/new']);
   }
 
-  editCategory(categoryId: number) {
-    this.router.navigate(['/admin/categories', categoryId]);
-  }
-
   async deleteCategory(categoryId: number) {
     if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
       this.isLoading = true;
