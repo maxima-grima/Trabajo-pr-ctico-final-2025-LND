@@ -27,7 +27,7 @@ export class AuthService {
     });
     
     if (res.ok) {
-      const tokenText = await res.text();
+      const tokenText = (await res.json()).token;
       localStorage.setItem("token", tokenText);
       return true;
     }

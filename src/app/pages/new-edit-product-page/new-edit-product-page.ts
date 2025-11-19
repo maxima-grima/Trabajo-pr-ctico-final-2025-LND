@@ -35,7 +35,7 @@ export class NewEditProductPage {
         Name: this.productoOriginal!.name,
         Descripcion: this.productoOriginal!.description,
         Price: this.productoOriginal!.price,
-        Destacado: this.productoOriginal!.IsFeatured,
+        Destacado: this.productoOriginal!.featured,
         Recomendado: this.productoOriginal!.recommendedFor,
         Descuento: this.productoOriginal!.discount,
         HappyHour: this.productoOriginal!.hasHappyHour,
@@ -44,18 +44,19 @@ export class NewEditProductPage {
     await this.categoriesService.getCategoriesByRestaurant(this.authService.getUserId());
   }
   async handleFormSubmission(form: NgForm) {
+    console.log(form.value);
     this.errorBack = false;
     const nuevoProducto: NewProduct = {
       name: form.value.name,
-      description: form.value.Descripcion,
-      price: form.value.Precio,
-      IsFeatured: form.value.Destacado,
-      recommendedFor: form.value.Recomendado,
-      discount: form.value.Descuento,
-      hasHappyHour: form.value.HappyHour,
-      categoryId: form.value.categoryId,
-      restaurantId: this.authService.getUserId() ,
-    }
+      description: form.value.descripcion,
+      price: parseInt(form.value.price),
+      featured: form.value.featured === true,
+      recommendedFor: parseInt(form.value.recommendedFor),
+      discount: parseInt(form.value.discount),
+      hasHappyHour: form.value.hasHappyHour === true,
+      categoryId: parseInt(form.value.categoryId),
+      restaurantId: this.authService.getUserId(),
+    };
     let res;
     this.isLoading = true;
     if (this.idProducto()) {
@@ -74,6 +75,6 @@ export class NewEditProductPage {
       return
     };
 
-    this.router.navigate(["/admin", res.id]);
+    this.router.navigate(["/"]);
   }
 }

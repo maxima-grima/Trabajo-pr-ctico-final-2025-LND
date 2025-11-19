@@ -30,11 +30,11 @@
             </div>
             <div class="form-group">
                 <label for="IsFeatured">¿Desea destacar su producto?</label>
-                <input id="IsFeatured" type="checkbox" name="IsFeatured" ngModel #IsFeatured="ngModel">
+                <input id="IsFeatured" type="checkbox" name="featured" ngModel #IsFeatured="ngModel">
             </div>
             <div class="form-group">
-                <input id="recommendedFor" type="text" name="recommendedFor" placeholder="Recomendado para: " ngModel
-                    #recommendedFor="ngModel">
+                <input id="recommendedFor" type="text" name="recommendedFor" placeholder="Cantidad de comensales: " ngModel
+                    #recommendedFor="ngModel" required="true">
             </div>
             <div class="form-group">
                 <input id="discount" type="text" name="discount" placeholder="Descuento del producto" ngModel
@@ -42,11 +42,11 @@
             </div>
             <div class="form-group checkbox">
                 <label for="hasHappyHour">¿Su producto tiene Happy Hour?</label>
-                <input id="hasHappyHour" type="checkbox" name="hasHappyHour" placeholder="">
+                <input id="hasHappyHour" type="checkbox" name="hasHappyHour" placeholder="" ngModel #hasHappyHour="ngModel">
             </div>
             <div class="form-group checkbox">
                 <label for="categoryId">Categoría</label>
-                <select name="categoryId" id="categoryId" required>
+                <select name="categoryId" id="categoryId" required ngModel #categoryId="ngModel">
                     @for (category of this.categoriesService.categories(); track $index) {
                     <option [value]="category.id">{{ category.name }}</option>
                     }

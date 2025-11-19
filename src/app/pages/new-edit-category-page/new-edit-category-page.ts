@@ -68,7 +68,7 @@ export class NewEditCategoryPage {
       return
     };
 
-    this.router.navigate(["/admin", res.id]);
+    this.router.navigate(["/"]);
   }
 
 

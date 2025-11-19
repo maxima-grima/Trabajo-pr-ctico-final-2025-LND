@@ -59,7 +59,11 @@ export const routes: Routes = [
             {
                 path: "newcategory",
                 component: NewEditCategoryPage,
+            },
+            {
+                path: "product/:idProduct/edit",
+                component: NewEditProductPage,
             }
-        ]
+        ]    
     }
 ];
