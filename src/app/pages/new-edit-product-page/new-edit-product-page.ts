@@ -48,7 +48,7 @@ export class NewEditProductPage {
     this.errorBack = false;
     const nuevoProducto: NewProduct = {
       name: form.value.name,
-      description: form.value.descripcion,
+      description: form.value.description,
       price: parseInt(form.value.price),
       featured: form.value.featured === true,
       recommendedFor: parseInt(form.value.recommendedFor),
