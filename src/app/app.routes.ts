@@ -11,6 +11,8 @@ import { AdminLayout } from './layout/admin-layout/admin-layout';
 import { NewEditProductPage } from './pages/new-edit-product-page/new-edit-product-page';
 import { NewEditCategoryPage } from './pages/new-edit-category-page/new-edit-category-page';
 import { MenuAdminComponent } from './pages/menu-admin/menu-admin';
+import { Settings } from './pages/settings/settings';
+import { EditUser } from './pages/edit-user/edit-user';
 export const routes: Routes = [
 
     {
@@ -67,7 +69,15 @@ export const routes: Routes = [
             {
                 path: "category/:idCategory/edit",
                 component: NewEditCategoryPage,
-            }
+            }, 
+            {
+                path: "settings",
+                component: Settings,
+            },
+            {
+                path: "edituser",
+                component: EditUser,
+            },
         ]    
     }
 ];

@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth-service';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLinkWithHref],
   templateUrl: './admin-layout.html',
   styleUrl: './admin-layout.scss'
 })

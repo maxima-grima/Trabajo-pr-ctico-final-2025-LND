@@ -15,9 +15,9 @@ export class UsersService {
         method: 'GET'
 
       });
-      if (!res.ok) return;
-      const resJson : User [] = await res.json ()
-      this.users = resJson
+    if (!res.ok) return;
+    const resJson: User[] = await res.json()
+    this.users = resJson
   }
   async getUsersbyId(id: string | number) {
     const res = await fetch(`${this.UrlBase}/${id}`,
@@ -25,9 +25,9 @@ export class UsersService {
         method: 'GET'
 
       });
-      if (!res.ok) return;
-      const user : User = await res.json();
-      return user;
+    if (!res.ok) return;
+    const user: User = await res.json();
+    return user;
   }
   async createUser(newUser: NewUser) {
     const res = await fetch(this.UrlBase,
@@ -70,5 +70,8 @@ export class UsersService {
         'Authorization': 'Bearer ' + this.authService.token
       }
     });
-}
+    if (!res.ok) return false;
+    this.users = this.users.filter(user => user.id !== id);
+    return true;
+  }
 }
