@@ -38,11 +38,11 @@
           @for (product of getFilteredProducts(); track product.id) {
             <div class="product-card"
               [class.has-discount]="product.discount > 0"
-              [class.featured]="product.IsFeatured"
+              [class.featured]="product.featured"
               [class.happy-hour]="product.hasHappyHour">
               
               <div class="badges">
-                @if (product.IsFeatured) {
+                @if (product.featured) {
                   <span class="badge badge-featured">★ Destacado</span>
                 }
                 @if (product.discount > 0) {
