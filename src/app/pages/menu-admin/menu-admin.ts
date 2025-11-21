@@ -1,11 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CategoriesService } from '../../services/category-service';
 import { ProductsService } from '../../services/product-service';
 import { AuthService } from '../../services/auth-service';
 import { Category } from '../../interfaces/category';
-import { Product } from '../../interfaces/products';
 
 @Component({
   selector: 'app-menu-admin',
@@ -23,6 +22,8 @@ export class MenuAdminComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
   successMessage = '';
+  category = input.required<Category>()
+
 
   ngOnInit() {
     this.loadData();

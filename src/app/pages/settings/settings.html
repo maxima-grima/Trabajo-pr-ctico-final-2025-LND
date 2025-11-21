@@ -1,173 +1,66 @@
-<!-- <div>
-    <div>
-        <button (click)="userService.deleteUser(user!.id)">Eliminar Usuario</button>
-        <button routerLink='/edituser'>Editar</button>
-    </div>
-    <div>
-        <span>Restaurante: {{user!.restaurantName}} </span>
-        <span>📍 {{user?.address}}</span>
-        <span>📞 {{user?.phoneNumber}}</span>
-        <span>🧑‍🍳 {{user?.firstName}} {{user?.lastName}}</span>
-        <span></span>
-    </div>
-</div> -->
-
-<div class="edit-profile-container">
-  <div class="edit-profile-tarjeta">
-    <h1>Editar Perfil</h1>
-    
-    @if (cargando) {
-      <p class="loading">Cargando información...</p>
-    } @else if (usuario) {
-      <form #editUserForm="ngForm" (ngSubmit)="editProfile(editUserForm)">
-        
-        <div>
-          <label for="restaurantName">Nombre del restaurante</label>
-          <input id="restaurantName" name="restaurantName" type="text" minlength="2" ngModel="{{usuario.restaurantName}}"
-            #restaurantName="ngModel" 
-            required>
-          @if (restaurantName.invalid && !restaurantName.pristine) {
-            <p class="error">Debe colocar un nombre de restaurante.</p>
-          }
-        </div>
-
-        <div>
-          <label for="firstName">Nombre</label>
-          <input 
-            id="firstName" 
-            name="firstName" 
-            type="text" 
-            ngModel="{{usuario.firstName}}"
-            #firstName="ngModel" 
-            required
-            autocomplete="given-name" 
-            minlength="2" 
-            maxlength="15">
-          @if (firstName.invalid && !firstName.pristine) {
-            <p class="error">Debe ingresar su nombre.</p>
-          }
-        </div>
-
-        <div>
-          <label for="lastName">Apellido</label>
-          <input 
-            id="lastName" 
-            name="lastName" 
-            type="text" 
-            ngModel="{{usuario.lastName}}"
-            #lastName="ngModel" 
-            required
-            autocomplete="family-name" 
-            minlength="2" 
-            maxlength="20">
-          @if (lastName.invalid && !lastName.pristine) {
-            <p class="error">Debe ingresar su apellido.</p>
-          }
-        </div>
-
-        <div>
-          <label for="phoneNumber">Teléfono</label>
-          <input 
-            id="phoneNumber" 
-            name="phoneNumber" 
-            type="text" 
-            ngModel="{{usuario.phoneNumber}}"
-            #phoneNumber="ngModel" 
-            required
-            minlength="3" 
-            maxlength="30">
-          @if (phoneNumber.invalid && !phoneNumber.pristine) {
-            <p class="error">Debe ingresar un teléfono válido.</p>
-          }
-        </div>
-
-        <div>
-          <label for="address">Dirección</label>
-          <input 
-            id="address" 
-            name="address" 
-            type="text" 
-            ngModel="{{usuario.address}}"
-            #address="ngModel" 
-            required
-            minlength="5" 
-            autocomplete="address-level1">
-          @if (address.invalid && !address.pristine) {
-            <p class="error">Debe ingresar una dirección válida.</p>
-          }
-        </div>
-
-        <div class="password-section">
-          <p class="password-info">Dejar vacío si no desea cambiar la contraseña</p>
-          
-          <div>
-            <label for="password">Nueva contraseña</label>
-            <input id="password" name="password" type="password" ngModel #password="ngModel" 
-              minlength="8"
-              autocomplete="new-password">
-            @if (password.invalid && !password.pristine) {
-              <p class="error">Debe colocar una contraseña de al menos 8 caracteres.</p>
-            }
-          </div>
-
-          <div>
-            <label for="password2">Confirmar nueva contraseña</label>
-            <input 
-              id="password2" 
-              name="password2" 
-              type="password" 
-              ngModel
-              #password2="ngModel" 
-              minlength="8">
-            @if (password.value && password2.value && password.value !== password2.value) {
-              <p class="error">Las contraseñas no coinciden.</p>
-            }
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" [disabled]="isLoading || editForm.invalid">
-            {{ isLoading ? 'Guardando...' : 'Guardar cambios' }}
-          </button>
-          <button type="button" class="btn-cancel" (click)="cancel()" [disabled]="isLoading">
-            Cancelar
-          </button>
-        </div>
-
-        @if (error) {
-          <p class="error">{{ error }}</p>
-        }
-        @if (success) {
-          <p class="success">Perfil actualizado correctamente.</p>
-        }
-      </form>
-
-      <div class="danger-zone">
-        <h3>Zona de Peligro</h3>
-        <p>Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate.</p>
-        <button type="button" class="btn-delete" (click)="openDeleteConfirm()">
-          Eliminar cuenta
-        </button>
+<div class="settings-container">
+  @if (cargando) {
+    <p class="loading">Cargando información...</p>
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else if (user) {
+    <div class="user-info">
+      <h2>Mi Información</h2>
+      <div class="info-item">
+        <span class="label">Restaurante:</span>
+        <span class="value">{{ user.restaurantName }}</span>
       </div>
+      <div class="info-item">
+        <span class="label">📍 Dirección:</span>
+        <span class="value">{{ user.address }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">📞 Teléfono:</span>
+        <span class="value">{{ user.phoneNumber }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">🧑‍🍳 Dueño:</span>
+        <span class="value">{{ user.firstName }} {{ user.lastName }}</span>
+      </div>
+    </div>
 
-      @if (showDeleteConfirm) {
-        <div class="delete-confirmation">
-          <div class="confirmation-content">
-            <h3>¿Estás seguro?</h3>
-            <p>Esta acción es irreversible. Se eliminará tu cuenta y todos tus datos.</p>
-            <div class="confirmation-actions">
-              <button type="button" class="btn-confirm-delete" (click)="deleteProfile()">
-                Sí, eliminar mi cuenta
-              </button>
-              <button type="button" class="btn-cancel" (click)="closeDeleteConfirm()">
-                Cancelar
-              </button>
-            </div>
+    <div class="actions">
+      <button type="button" class="btn-edit" [routerLink]="['/user',user.id,'edit']">
+        ✏️ Editar Usuario
+      </button>
+      <button type="button" class="btn-delete" (click)="openDeleteConfirm()">
+        🗑️ Eliminar Usuario
+      </button>
+    </div>
+    <div class="back-button">
+      <a routerLink="/">← Volver</a>
+    </div>
+
+    @if (showDeleteConfirm) {
+      <div class="delete-confirmation">
+        <div class="confirmation-content">
+          <h3>¿Estás seguro?</h3>
+          <p>Esta acción es irreversible. Se eliminará tu cuenta y todos tus datos.</p>
+          <div class="confirmation-actions">
+            <button 
+              type="button" 
+              class="btn-confirm-delete" 
+              (click)="deleteUser()"
+              [disabled]="isDeleting">
+              {{ isDeleting ? 'Eliminando...' : 'Sí, eliminar mi cuenta' }}
+            </button>
+            <button 
+              type="button" 
+              class="btn-cancel" 
+              (click)="closeDeleteConfirm()"
+              [disabled]="isDeleting">
+              Cancelar
+            </button>
           </div>
         </div>
-      }
-    } @else {
-      <p class="error">No se pudo cargar la información del usuario.</p>
+      </div>
     }
-  </div>
+  } @else {
+    <p class="error">No se pudo cargar la información del usuario.</p>
+  }
 </div>

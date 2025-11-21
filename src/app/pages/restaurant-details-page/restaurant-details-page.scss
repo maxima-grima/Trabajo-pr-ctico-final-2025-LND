@@ -235,26 +235,3 @@
     font-weight: 700;
     color: #348dd6;
 }
-
-.back-button {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.back-button a {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #004e89;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 78, 137, 0.2);
-}
-
-.back-button a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 78, 137, 0.3);
-}

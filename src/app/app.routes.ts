@@ -75,7 +75,7 @@ export const routes: Routes = [
                 component: Settings,
             },
             {
-                path: "edituser",
+                path: "user/:idUser/edit",
                 component: EditUser,
             },
         ]    

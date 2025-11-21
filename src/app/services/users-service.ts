@@ -22,8 +22,11 @@ export class UsersService {
   async getUsersbyId(id: string | number) {
     const res = await fetch(`${this.UrlBase}/${id}`,
       {
-        method: 'GET'
-
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + this.authService.token,
+          'Content-Type': 'application/json'
+        }
       });
     if (!res.ok) return;
     const user: User = await res.json();
@@ -44,12 +47,12 @@ export class UsersService {
     return resUser;
   }
 
-  async updateUser(id: string | number, userEditado: User) {
-    const res = await fetch(`${this.UrlBase}/${id}`, {
+  async updateUser(userEditado: User) {
+    const res = await fetch(`${this.UrlBase}/${userEditado.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.authService.token
+        'Authorization': 'Bearer ' + this.authService.token,
       },
       body: JSON.stringify(userEditado)
     });
@@ -67,7 +70,7 @@ export class UsersService {
     const res = await fetch(`${this.UrlBase}/${id}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': 'Bearer ' + this.authService.token
+        'Authorization': 'Bearer ' + this.authService.token,
       }
     });
     if (!res.ok) return false;

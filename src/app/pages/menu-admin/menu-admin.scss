@@ -46,21 +46,6 @@
         justify-content: space-between;
         margin-bottom: 2rem;
 
-        .btn-body{
-            background-color: var(--color-primary);
-            color: #efefd0;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            max-width: fit-content;
-        }
-        .btn-body:hover{
-            background-color: #efefd0;
-            color: var(--color-primary);
-        }
         h2 {
             padding-bottom: 1rem;
         }
