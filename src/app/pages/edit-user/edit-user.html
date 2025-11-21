@@ -5,7 +5,11 @@
         
         <div>
           <label for="restaurantName">Nombre del restaurante</label>
-          <input id="restaurantName" name="restaurantName" type="text" minlength="2" ngModel
+          <input id="restaurantName" 
+            name="restaurantName"  
+            type="text" 
+            minlength="2" 
+            ngModel = "{{userOriginal?.restaurantName}}"
             #restaurantName="ngModel" 
             required="true">
           @if (restaurantName.invalid && !restaurantName.pristine) {
@@ -19,7 +23,7 @@
             id="firstName" 
             name="firstName" 
             type="text" 
-            ngModel
+            ngModel="{{userOriginal?.firstName}}"
             #firstName="ngModel" 
             required="true"
             autocomplete="given-name" 

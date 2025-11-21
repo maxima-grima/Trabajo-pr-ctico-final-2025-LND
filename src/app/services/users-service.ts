@@ -52,7 +52,7 @@ export class UsersService {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.authService.token,
+        'Authorization': `Bearer ${this.authService.token}`,
       },
       body: JSON.stringify(userEditado)
     });

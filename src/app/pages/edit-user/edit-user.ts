@@ -48,7 +48,7 @@ export class EditUser {
       lastName: form.value.lastName,
       address: form.value.address,
       phoneNumber: form.value.phoneNumber,
-      password: form.value.password || this.userOriginal?.password,
+      password: form.value.password  || this.userOriginal?.password,
     };
     let res;
     this.isLoading = true
@@ -63,27 +63,5 @@ export class EditUser {
     this.router.navigate(["/"]);
   
   }
-  async deleteProfile() {
-    if (!this.userOriginal) return;
 
-    this.isLoading = true;
-
-    try {
-      const result = await this.usersService.deleteUser(this.userOriginal.id);
-      
-      if (result) {
-        this.authService.logout();
-        this.router.navigate(['/']);
-      } else {
-        this.error = 'No se pudo eliminar la cuenta';
-      }
-    } catch (err) {
-      this.error = 'Error al eliminar la cuenta';
-      console.error(err);
-    } finally {
-      this.isLoading = false;
-      this.showDeleteConfirm = false;
-    }
-  }
-  
 }
