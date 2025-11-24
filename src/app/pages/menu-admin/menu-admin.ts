@@ -5,7 +5,7 @@ import { CategoriesService } from '../../services/category-service';
 import { ProductsService } from '../../services/product-service';
 import { AuthService } from '../../services/auth-service';
 import { Category } from '../../interfaces/category';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-menu-admin',
   imports: [CommonModule, RouterLink],
@@ -53,17 +53,35 @@ export class MenuAdminComponent implements OnInit {
   }
 
   async deleteCategory(categoryId: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esta acción. El producto se eliminará permanentemente.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (result.isConfirmed) {
       this.isLoading = true;
       const success = await this.categoriesService.deleteCategory(categoryId);
-      
-      if (success) {
-        this.successMessage = 'Categoría eliminada correctamente';
-        setTimeout(() => this.successMessage = '', 3000);
-      } else {
-        this.errorMessage = 'Error al eliminar la categoría';
-      }
       this.isLoading = false;
+
+      if (success) {
+        Swal.fire(
+          '¡Eliminado!',
+          'El producto ha sido eliminado.',
+          'success'
+        );
+      } else {
+        Swal.fire(
+          'Error',
+          'Hubo un problema al eliminar el producto.',
+          'error'
+        );
+      }
     }
   }
 
@@ -76,17 +94,34 @@ export class MenuAdminComponent implements OnInit {
   }
 
   async deleteProduct(productId: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esta acción. El producto se eliminará permanentemente.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (result.isConfirmed) {
       this.isLoading = true;
       const success = await this.productsService.deleteProduct(productId);
-      
-      if (success) {
-        this.successMessage = 'Producto eliminado correctamente';
-        setTimeout(() => this.successMessage = '', 3000);
-      } else {
-        this.errorMessage = 'Error al eliminar el producto';
-      }
       this.isLoading = false;
+
+      if (success) {
+        Swal.fire(
+          '¡Eliminado!',
+          'El producto ha sido eliminado.',
+          'success'
+        );
+      } else {
+        Swal.fire(
+          'Error',
+          'Hubo un problema al eliminar el producto.',
+          'error'
+        );
+      }
     }
-  }
-}
+  }}

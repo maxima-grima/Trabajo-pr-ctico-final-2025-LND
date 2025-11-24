@@ -19,7 +19,7 @@ export class NewEditProductPage {
   productService=inject(ProductsService)
   authService = inject(AuthService)
   categoriesService = inject(CategoriesService)
-  idProducto= input<number>();
+  idProduct= input<number>();
   router=inject(Router)
   productoOriginal: Product | undefined = undefined;
   categories: Category[] = [];
@@ -29,8 +29,8 @@ export class NewEditProductPage {
   
 
   async ngOnInit() {
-    if (this.idProducto()) {
-      this.productoOriginal = await this.productService.getProductById(this.idProducto()!);
+    if (this.idProduct()) {
+      this.productoOriginal = await this.productService.getProductById(this.idProduct()!);
       this.form()?.setValue({
         Name: this.productoOriginal!.name,
         Descripcion: this.productoOriginal!.description,
@@ -59,10 +59,10 @@ export class NewEditProductPage {
     };
     let res;
     this.isLoading = true;
-    if (this.idProducto()) {
+    if (this.idProduct()) {
       res = await this.productService.updateProduct({
         ...nuevoProducto,
-        id: this.idProducto()!
+        id: this.idProduct()!
       });
     } else {
       res = await this.productService.createProduct(nuevoProducto);

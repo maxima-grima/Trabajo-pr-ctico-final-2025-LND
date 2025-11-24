@@ -17,7 +17,7 @@
         @if (idCategory()) {
             <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Editar</button>
         } @else {   
-            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">+</button>
+            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Crear</button>
         }
 
         @if (isLoading) {

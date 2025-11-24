@@ -28,10 +28,22 @@ form{
     margin-top: 15px;
     border: none;
     border-radius: 8px;
-    background-color:(--color-text-primary);
+    background-color: #ff6b35; 
     color: white;
-    font-size: 15px;
-    font: bold;
     cursor: pointer;
-    transition: 0.3 ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    &:hover:not(:disabled) {
+        background-color: #e85a24;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    &:disabled {
+        background-color: #bdc3c7; 
+        color: #7f8c8d; 
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+        opacity: 0.8;
+    }
 }

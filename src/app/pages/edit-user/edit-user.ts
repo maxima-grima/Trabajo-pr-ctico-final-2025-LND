@@ -26,17 +26,17 @@ export class EditUser {
   idUser = input<number>();
 
   async ngOnInit() {
-    if(this.idUser()){
-        this.userOriginal = await this.usersService.getUsersbyId(this.idUser()!)
-        this.form()?.setValue({
-          firstName: this.userOriginal!.firstName,
-          lastName: this.userOriginal!.lastName,
-          address: this.userOriginal!.address,
-          restaurantName: this.userOriginal!.restaurantName,
-          password: this.userOriginal!.password,
-          phoneNumber: this.userOriginal!.phoneNumber,        
-        })
-      }
+    if (this.idUser()) {
+      this.userOriginal = await this.usersService.getUsersbyId(this.idUser()!)
+      this.form()?.setValue({
+        firstName: this.userOriginal!.firstName,
+        lastName: this.userOriginal!.lastName,
+        address: this.userOriginal!.address,
+        restaurantName: this.userOriginal!.restaurantName,
+        password: this.userOriginal!.password,
+        phoneNumber: this.userOriginal!.phoneNumber,
+      })
+    }
   }
   async handleFormSubmission(form: NgForm) {
 
@@ -48,20 +48,20 @@ export class EditUser {
       lastName: form.value.lastName,
       address: form.value.address,
       phoneNumber: form.value.phoneNumber,
-      password: form.value.password  || this.userOriginal?.password,
+      password: form.value.password || this.userOriginal?.password,
     };
     let res;
     this.isLoading = true
-    if(this.idUser()){
-      res = await this.usersService.updateUser({...editUSer, id:this.idUser()!});
+    if (this.idUser()) {
+      res = await this.usersService.updateUser({ ...editUSer, id: this.idUser()! });
     }
-    this.isLoading = false; 
-    if(!res){
-      this.errorBack = true; 
+    this.isLoading = false;
+    if (!res) {
+      this.errorBack = true;
       return
     };
     this.router.navigate(["/"]);
-  
+
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="general-container">
-    @if (idProducto()) {
+    @if (idProduct()) {
     <h2>Editar Producto</h2>
     }
     @else {
@@ -53,10 +53,10 @@
                 </select>
             </div>
 
-            @if (idProducto()) {
+            @if (idProduct()) {
             <button class="btn-body" [disabled]="newProductForm.invalid || isLoading">Editar</button>
             } @else {
-            <button class="btn-body" [disabled]="newProductForm.invalid || isLoading">+</button>
+            <button class="btn-body" [disabled]="newProductForm.invalid || isLoading">Crear</button>
             }
 
             @if (isLoading) {
