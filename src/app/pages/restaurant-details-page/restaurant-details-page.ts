@@ -56,10 +56,6 @@ export class RestaurantDetailsPage implements OnInit {
     return this.products().filter(p => p.categoryId === selectedId);
   }
 
-  getCategoryName(categoryId: number): string {
-    return this.categories().find(c => c.id === categoryId)?.name ?? 'Sin Categoría';
-  }
-
   getFinalPrice(product: Product): number {
     if (!product.discount || product.discount === 0) {
       return product.price;

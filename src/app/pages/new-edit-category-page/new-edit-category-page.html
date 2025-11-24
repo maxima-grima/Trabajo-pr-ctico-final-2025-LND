@@ -8,7 +8,7 @@
     <div class="form-section">
         <form (ngSubmit)="handleFormSubmission(newCategoryForm)" #newCategoryForm="ngForm">
         <div class="form-group">        
-            <input id="name" type="text" name="name" placeholder="Nombre de la categoría" ngModel #name="ngModel" required="true">
+            <input id="name" type="text" name="name" placeholder="Nombre de la categoría" ngModel="{{categoryOriginal?.name}}" #name="ngModel" required="true">
             @if (name.dirty && name.invalid) {
                 <p class="error">El nombre es obligatorio y no puede ser una sola letra</p>
             }

@@ -36,7 +36,6 @@ export class MenuAdminComponent implements OnInit {
       await this.productsService.getProductsByRestaurant(this.authService.getUserId());
     } catch (error) {
       this.errorMessage = 'Error al cargar los datos';
-      console.error(error);
     } finally {
       this.isLoading = false;
     }
@@ -55,7 +54,7 @@ export class MenuAdminComponent implements OnInit {
   async deleteCategory(categoryId: number) {
     const result = await Swal.fire({
       title: '¿Estás seguro?',
-      text: "No podrás revertir esta acción. El producto se eliminará permanentemente.",
+      text: "No podrás revertir esta acción. La categoría se eliminará permanentemente.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
