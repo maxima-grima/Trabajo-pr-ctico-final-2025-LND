@@ -37,7 +37,6 @@ export class Settings implements OnInit {
       }
     } catch (err) {
       this.error = 'Error al cargar la información del usuario';
-      console.error(err);
     } finally {
       this.cargando = false;
     }
