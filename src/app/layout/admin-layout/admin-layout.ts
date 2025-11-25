@@ -10,4 +10,29 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 })
 export class AdminLayout {
   authService = inject(AuthService);
+  showLogOutConfirm = false;
+  isLogingOut = false;
+  error = '';
+
+  openLogOutConfirm() {
+    this.showLogOutConfirm = true;
+  }
+
+  closeLogOutConfirm() {
+    this.showLogOutConfirm = false;
+  }
+
+  async logOutUser() {
+
+    this.isLogingOut = true;
+
+    try {
+      this.authService.logout();
+    
+    } catch (err) {
+      this.error = 'Error al cerrar sesión';
+      this.showLogOutConfirm = false;
+      this.isLogingOut = false;
+    }
+  }
 }
