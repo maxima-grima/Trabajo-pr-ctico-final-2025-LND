@@ -17,34 +17,44 @@ import { Spinner } from "../../Components/spinner/spinner";
 export class NewEditCategoryPage {
   authService = inject(AuthService)
   categoryService = inject(CategoriesService)
-  router=inject(Router)
+  router = inject(Router)
 
-  idCategory = input<number>();   
+  idCategory = input<number>();
   categoryOriginal: Category | undefined = undefined;
   form = viewChild<NgForm>(`newCategoryForm`);
-  errorBack=false;
-  isLoading = false;  
+  errorBack = false;
+  isLoading = false;
 
   async ngOnInit() {
     // Obtener la categoría específica para editar
-      const allCategories = this.categoryService.categories();
-      this.categoryOriginal = allCategories.find(cat => cat.id === this.idCategory());
-      
+    const allCategories = this.categoryService.categories();
+    this.categoryOriginal = allCategories.find(cat => cat.id == this.idCategory());
+
+    if (this.categoryOriginal) {
+      this.form()?.setValue({
+        name: this.categoryOriginal.name,
+      });
+    } else {
+      // Cargar todas las categorías del restaurante
+      await this.categoryService.getCategoriesByRestaurant(this.authService.getUserId());
+      const freshCategories = this.categoryService.categories();
+      this.categoryOriginal = freshCategories.find(cat => cat.id == this.idCategory()!);
+
+      // Si ahora sí aparece, rellena el form
       if (this.categoryOriginal) {
         this.form()?.setValue({
           name: this.categoryOriginal.name,
         });
-      } else {
-      // Cargar todas las categorías del restaurante
-      await this.categoryService.getCategoriesByRestaurant(this.authService.getUserId());
+      }
     }
-  }  
+  }
+
 
   async handleFormSubmission(form: NgForm) {
     this.errorBack = false;
     const nuevaCategory: NewCategory = {
       name: form.value.name,
-      restaurantId: this.authService.getUserId() ,
+      restaurantId: this.authService.getUserId(),
     }
 
     let res;
