@@ -92,7 +92,7 @@ export class ProductsService {
 
   async setHappyHour(id: string | number, happyHourData: HappyHourData) {
     const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/happyHour`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.token}`

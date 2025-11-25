@@ -60,6 +60,12 @@ export class NewEditProductPage {
     let res;
     this.isLoading = true;
     if (this.idProduct()) {
+      if (this.productoOriginal && parseInt(form.value.discount) !== this.productoOriginal.discount) {
+         await this.productService.setDiscount(this.idProduct()!, { discount: parseInt(form.value.discount) });
+      }
+      if (this.productoOriginal && (form.value.hasHappyHour === true) !== this.productoOriginal.hasHappyHour) {
+         await this.productService.setHappyHour(this.idProduct()!, { hasHappyHour: form.value.hasHappyHour === true });
+      }
       res = await this.productService.updateProduct({
         ...nuevoProducto,
         id: this.idProduct()!
