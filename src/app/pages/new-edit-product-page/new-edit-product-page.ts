@@ -15,18 +15,18 @@ import { Spinner } from "../../Components/spinner/spinner";
   styleUrl: './new-edit-product-page.scss'
 })
 export class NewEditProductPage {
-  restaurantService=inject(UsersService)
-  productService=inject(ProductsService)
+  restaurantService = inject(UsersService)
+  productService = inject(ProductsService)
   authService = inject(AuthService)
   categoriesService = inject(CategoriesService)
-  idProduct= input<number>();
-  router=inject(Router)
+  idProduct = input<number>();
+  router = inject(Router)
   productoOriginal: Product | undefined = undefined;
   categories: Category[] = [];
   form = viewChild<NgForm>(`newProductForm`);
-  errorBack=false;
+  errorBack = false;
   isLoading = false;
-  
+
 
   async ngOnInit() {
     if (this.idProduct()) {
@@ -44,7 +44,7 @@ export class NewEditProductPage {
     await this.categoriesService.getCategoriesByRestaurant(this.authService.getUserId());
   }
   async handleFormSubmission(form: NgForm) {
-    
+
     this.errorBack = false;
     const nuevoProducto: NewProduct = {
       name: form.value.name,

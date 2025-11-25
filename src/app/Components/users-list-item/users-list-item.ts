@@ -10,6 +10,6 @@ import { UsersService } from '../../services/users-service';
   styleUrl: './users-list-item.scss'
 })
 export class UsersListItem {
-usersService = inject (UsersService)
-user= input.required<User>()
+  usersService = inject(UsersService)
+  user = input.required<User>()
 }

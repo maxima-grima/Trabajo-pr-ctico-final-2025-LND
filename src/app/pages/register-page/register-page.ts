@@ -31,7 +31,7 @@ export class RegisterPage {
       this.errorRegister = true;
       return
     }
-    
+
     this.isLoading = true;
     const user = await this.usersService.createUser(form.value);
     this.isLoading = false;

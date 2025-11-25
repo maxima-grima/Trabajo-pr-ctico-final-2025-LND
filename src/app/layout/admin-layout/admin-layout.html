@@ -1,36 +1,28 @@
 <div>
-    <h1>LIJA</h1>
-    <nav>
+  <h1>LIJA</h1>
+  <nav>
     <button (click)="openLogOutConfirm()" class="btn-login">Cerrar Sesión</button>
     <button class="btn-login" routerLink="settings">Settings</button>
-    </nav>
-    
+  </nav>
+
 </div>
 <main>
-       @if (showLogOutConfirm) {
-      <div class="delete-confirmation">
-        <div class="confirmation-content">
-          <h3>¿Estás seguro?</h3>
-          <p>Esta acción cerrará tu sesión</p>
-          <div class="confirmation-actions">
-            <button 
-              type="button" 
-              class="btn-confirm-delete" 
-              (click)="logOutUser()"
-              [disabled]="isLogingOut">
-              {{ isLogingOut ? 'Cerrando Sesión...' : 'Sí, cerrar sesión' }}
-            </button>
-            <button 
-              type="button" 
-              class="btn-cancel" 
-              (click)="closeLogOutConfirm()"
-              [disabled]="isLogingOut">
-              Cancelar
-            </button>
-          </div>
-        </div>
+  @if (showLogOutConfirm) {
+  <div class="delete-confirmation">
+    <div class="confirmation-content">
+      <h3>¿Estás seguro?</h3>
+      <p>Esta acción cerrará tu sesión</p>
+      <div class="confirmation-actions">
+        <button type="button" class="btn-confirm-delete" (click)="logOutUser()" [disabled]="isLogingOut">
+          {{ isLogingOut ? 'Cerrando Sesión...' : 'Sí, cerrar sesión' }}
+        </button>
+        <button type="button" class="btn-cancel" (click)="closeLogOutConfirm()" [disabled]="isLogingOut">
+          Cancelar
+        </button>
       </div>
-    }
+    </div>
+  </div>
+  }
 
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </main>

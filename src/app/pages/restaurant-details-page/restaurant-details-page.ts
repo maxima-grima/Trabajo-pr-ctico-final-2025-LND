@@ -34,12 +34,12 @@ export class RestaurantDetailsPage implements OnInit {
       }
       await this.productsService.getProductsByRestaurant(restaurantId);
       await this.categoriesService.getCategoriesByRestaurant(restaurantId);
-      
+
       // Seleccionar primera categoría por defecto
       if (this.categories().length > 0) {
         this.selectedCategoryId.set(this.categories()[0].id);
       }
-      
+
       this.cargandoInfo = false;
     }
   }

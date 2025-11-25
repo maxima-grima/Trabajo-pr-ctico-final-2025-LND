@@ -3,114 +3,202 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
+
 body {
-	line-height: 1;
-	background-color: #f7c59f !important;
-	color: var(--color-text-primary) !important;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1;
+  background-color: #f7c59f !important;
+  color: var(--color-text-primary) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-h1{
-	padding-bottom: 10px;
-	font-size: 30px;
-	
+
+h1 {
+  padding-bottom: 10px;
+  font-size: 30px;
+
 }
 
 :root {
-  --color-primary: #004aad;        
-  --color-secondary: #ff6600;      
-  --color-bg: #fffce8;            
-  --color-surface:#f7c59f;        
-  --color-text-primary: #003366;   
-  --color-text-secondary: #444444;      
+  --color-primary: #004aad;
+  --color-secondary: #ff6600;
+  --color-bg: #fffce8;
+  --color-surface: #f7c59f;
+  --color-text-primary: #003366;
+  --color-text-secondary: #444444;
   --color-hover: #0056cc;
 }
 
-a{
-	text-decoration: none !important; 
-	color: var(--color-text-primary);
+a {
+  text-decoration: none !important;
+  color: var(--color-text-primary);
 }
 
-.general-container{
-	padding-top: 2rem;
-	display: flex;
-	flex-direction: column;
+.general-container {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.form-section {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+
+  form {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: nowrap;
-}
-.form-section{
-	background: #f9f9f9;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-	
-	form{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}	
+  }
 
-	.form-group {
-      margin-bottom: 10px;
+  .form-group {
+    margin-bottom: 10px;
 
-      input[type="checkbox"] {
-		accent-color: var(--color-text-primary); 
-		border: 1px solid #ddd;
-		background-color: var(--color-primary);
-		height: 17px;
-		width: 17px;
-		text-align: center;
-		color: var(--color-bg);
-	  }
+    input[type="checkbox"] {
+      accent-color: var(--color-text-primary);
+      border: 1px solid #ddd;
+      background-color: var(--color-primary);
+      height: 17px;
+      width: 17px;
+      text-align: center;
+      color: var(--color-bg);
+    }
 
-      input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 15px;
-        transition: border-color 0.3s;
-	  }
-	}
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+  }
 }
 
 button {
@@ -123,42 +211,42 @@ button {
   transition: all 0.3s ease;
 }
 
-.btn-body{
-    background-color: var(--color-primary);
-    color: #efefd0;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-	max-width: fit-content;
+.btn-body {
+  background-color: var(--color-primary);
+  color: #efefd0;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: fit-content;
 }
-.btn-body:hover{
-    background-color: #efefd0;
-    color: var(--color-primary);
+
+.btn-body:hover {
+  background-color: #efefd0;
+  color: var(--color-primary);
 }
 
 .back-button {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .back-button a {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #004e89;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 78, 137, 0.2);
+  display: inline-block;
+  padding: 12px 24px;
+  background: #004e89;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 78, 137, 0.2);
 }
 
 .back-button a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 78, 137, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 78, 137, 0.3);
 }
-

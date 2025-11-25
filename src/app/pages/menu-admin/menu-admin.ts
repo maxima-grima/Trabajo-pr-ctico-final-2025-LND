@@ -123,4 +123,5 @@ export class MenuAdminComponent implements OnInit {
         );
       }
     }
-  }}
+  }
+}

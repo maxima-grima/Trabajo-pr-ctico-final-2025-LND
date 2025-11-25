@@ -10,7 +10,7 @@ describe('NewEditProductPage', () => {
     await TestBed.configureTestingModule({
       imports: [NewEditProductPage]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NewEditProductPage);
     component = fixture.componentInstance;

@@ -4,7 +4,8 @@
     <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
       <div>
         <label for="restaurantName">Nombre del restaurante</label>
-       <input id="restaurantName" name="restaurantName"  type="text" minlength="2" ngModel #restaurantName="ngModel" required>
+        <input id="restaurantName" name="restaurantName" type="text" minlength="2" ngModel #restaurantName="ngModel"
+          required>
         @if (restaurantName.invalid && !restaurantName.pristine) {
         <p class="error">Debe colocar un nombre de restaurante .</p>
         }
@@ -35,19 +36,20 @@
       </div>
       <div>
         <label for="password2">Repite la contraseña</label>
-        <input id="password2" name="password2" type="password" ngModel #password2="ngModel" minlength="8"
-          >
+        <input id="password2" name="password2" type="password" ngModel #password2="ngModel" minlength="8">
         @if (password.invalid && !password.pristine) {
         <p class="error">Debe colocar una contraseña de al menos 8 caracteres.</p>
         }
       </div>
       <div>
         <label for="phoneNumber"> Telefono </label>
-         <input id="phoneNumber" name="phoneNumber" type="text" ngModel #phoneNumber="ngModel" required="true" minlength="3" maxlength="30">
+        <input id="phoneNumber" name="phoneNumber" type="text" ngModel #phoneNumber="ngModel" required="true"
+          minlength="3" maxlength="30">
       </div>
       <div>
         <label for="address"> Direccion</label>
-         <input id="address" name="address" type="text" ngModel #address="ngModel" minlength="5" autocomplete="address-level1">
+        <input id="address" name="address" type="text" ngModel #address="ngModel" minlength="5"
+          autocomplete="address-level1">
       </div>
       <button [disabled]="isLoading || registerForm.invalid">Registrarse</button>
       @if (errorRegister) {

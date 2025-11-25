@@ -1,66 +1,58 @@
 <div class="settings-container">
   @if (cargando) {
-    <p class="loading">Cargando información...</p>
+  <p class="loading">Cargando información...</p>
   } @else if (error) {
-    <p class="error">{{ error }}</p>
+  <p class="error">{{ error }}</p>
   } @else if (user) {
-    <div class="user-info">
-      <h2>Mi Información</h2>
-      <div class="info-item">
-        <span class="label">Restaurante:</span>
-        <span class="value">{{ user.restaurantName }}</span>
-      </div>
-      <div class="info-item">
-        <span class="label">📍 Dirección:</span>
-        <span class="value">{{ user.address }}</span>
-      </div>
-      <div class="info-item">
-        <span class="label">📞 Teléfono:</span>
-        <span class="value">{{ user.phoneNumber }}</span>
-      </div>
-      <div class="info-item">
-        <span class="label">🧑‍🍳 Dueño:</span>
-        <span class="value">{{ user.firstName }} {{ user.lastName }}</span>
-      </div>
+  <div class="user-info">
+    <h2>Mi Información</h2>
+    <div class="info-item">
+      <span class="label">Restaurante:</span>
+      <span class="value">{{ user.restaurantName }}</span>
     </div>
+    <div class="info-item">
+      <span class="label">📍 Dirección:</span>
+      <span class="value">{{ user.address }}</span>
+    </div>
+    <div class="info-item">
+      <span class="label">📞 Teléfono:</span>
+      <span class="value">{{ user.phoneNumber }}</span>
+    </div>
+    <div class="info-item">
+      <span class="label">🧑‍🍳 Dueño:</span>
+      <span class="value">{{ user.firstName }} {{ user.lastName }}</span>
+    </div>
+  </div>
 
-    <div class="actions">
-      <button type="button" class="btn-edit" [routerLink]="['/admin/user',user.id,'edit']">
-        ✏️ Editar Usuario
-      </button>
-      <button type="button" class="btn-delete" (click)="openDeleteConfirm()">
-        🗑️ Eliminar Usuario
-      </button>
-    </div>
-    <div class="back-button">
-      <a routerLink="/">← Volver</a>
-    </div>
+  <div class="actions">
+    <button type="button" class="btn-edit" [routerLink]="['/admin/user',user.id,'edit']">
+      ✏️ Editar Usuario
+    </button>
+    <button type="button" class="btn-delete" (click)="openDeleteConfirm()">
+      🗑️ Eliminar Usuario
+    </button>
+  </div>
+  <div class="back-button">
+    <a routerLink="/">← Volver</a>
+  </div>
 
-    @if (showDeleteConfirm) {
-      <div class="delete-confirmation">
-        <div class="confirmation-content">
-          <h3>¿Estás seguro?</h3>
-          <p>Esta acción es irreversible. Se eliminará tu cuenta y todos tus datos.</p>
-          <div class="confirmation-actions">
-            <button 
-              type="button" 
-              class="btn-confirm-delete" 
-              (click)="deleteUser()"
-              [disabled]="isDeleting">
-              {{ isDeleting ? 'Eliminando...' : 'Sí, eliminar mi cuenta' }}
-            </button>
-            <button 
-              type="button" 
-              class="btn-cancel" 
-              (click)="closeDeleteConfirm()"
-              [disabled]="isDeleting">
-              Cancelar
-            </button>
-          </div>
-        </div>
+  @if (showDeleteConfirm) {
+  <div class="delete-confirmation">
+    <div class="confirmation-content">
+      <h3>¿Estás seguro?</h3>
+      <p>Esta acción es irreversible. Se eliminará tu cuenta y todos tus datos.</p>
+      <div class="confirmation-actions">
+        <button type="button" class="btn-confirm-delete" (click)="deleteUser()" [disabled]="isDeleting">
+          {{ isDeleting ? 'Eliminando...' : 'Sí, eliminar mi cuenta' }}
+        </button>
+        <button type="button" class="btn-cancel" (click)="closeDeleteConfirm()" [disabled]="isDeleting">
+          Cancelar
+        </button>
       </div>
-    }
+    </div>
+  </div>
+  }
   } @else {
-    <p class="error">No se pudo cargar la información del usuario.</p>
+  <p class="error">No se pudo cargar la información del usuario.</p>
   }
 </div>

@@ -4,7 +4,6 @@ import { LoginPage } from './pages/login-page/login-page';
 import { onlyPublicUserGuard } from './guard/only-public-user-guard';
 import { RegisterPage } from './pages/register-page/register-page';
 import { onlyLoggedUserGuard } from './guard/only-loged-user-guard';
-import { CanActivateFn } from '@angular/router';
 import { RestaurantDetailsPage } from './pages/restaurant-details-page/restaurant-details-page';
 import { GeneralLayout } from './layout/general-layout/general-layout';
 import { AdminLayout } from './layout/admin-layout/admin-layout';
@@ -47,7 +46,7 @@ export const routes: Routes = [
         canActivate: [onlyLoggedUserGuard],
         children: [
             {
-                path:"",
+                path: "",
                 component: MenuAdminComponent,
             },
             {
@@ -65,11 +64,11 @@ export const routes: Routes = [
             {
                 path: "product/:idProduct/edit",
                 component: NewEditProductPage,
-            }, 
+            },
             {
                 path: "category/:idCategory/edit",
                 component: NewEditCategoryPage,
-            }, 
+            },
             {
                 path: "settings",
                 component: Settings,
@@ -78,6 +77,6 @@ export const routes: Routes = [
                 path: "user/:idUser/edit",
                 component: EditUser,
             },
-        ]    
+        ]
     }
 ];

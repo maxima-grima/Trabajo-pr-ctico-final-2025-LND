@@ -20,22 +20,22 @@ export class LoginPage {
   router = inject(Router);
 
   async login(form: any) {
-    
+
     this.errorLogin = false;
 
     if (!form.value.restaurantName || !form.value.password) {
-      this.errorLogin = true;  
+      this.errorLogin = true;
       return
     }
-    
+
     this.isLoading = true;
     const success = await this.authService.login(form.value);
     this.isLoading = false;
-    
+
     if (success) {
       this.router.navigate(["/admin"])
     }
-    
+
     this.errorLogin = true;
   }
 }

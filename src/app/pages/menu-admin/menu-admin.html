@@ -3,121 +3,102 @@
     <h1>Mi Menú</h1>
     <p>Gestioná tus categorías y productos</p>
     <div class="tabs-container">
-        <button 
-        class="tab-button"
-        [class.active]="activeTab === 'categories'"
-        (click)="switchTab('categories')"
-        >
+      <button class="tab-button" [class.active]="activeTab === 'categories'" (click)="switchTab('categories')">
         📁 Categorías ({{ categoriesService.categories().length }})
-        </button>
-        <button 
-        class="tab-button"
-        [class.active]="activeTab === 'products'"
-        (click)="switchTab('products')"
-        >
+      </button>
+      <button class="tab-button" [class.active]="activeTab === 'products'" (click)="switchTab('products')">
         🍽️ Productos ({{ productsService.products().length }})
-        </button>
+      </button>
     </div>
-</div>
+  </div>
 
   @if (activeTab === 'categories') {
-    <div class="tab-content">
-      <div class="content-header">
-        <h2>Categorías</h2>
-        <button class="btn-body" routerLink="newcategory" [disabled]="isLoading">
-          + Nueva Categoría
-        </button>
-      </div>
+  <div class="tab-content">
+    <div class="content-header">
+      <h2>Categorías</h2>
+      <button class="btn-body" routerLink="newcategory" [disabled]="isLoading">
+        + Nueva Categoría
+      </button>
+    </div>
 
-      @if (categoriesService.categories().length === 0) {
-        <div class="empty-state">
-          <p>No hay categorías aún</p>
-          <p class="subtitle">Crea una categoría para organizar tus productos</p>
+    @if (categoriesService.categories().length === 0) {
+    <div class="empty-state">
+      <p>No hay categorías aún</p>
+      <p class="subtitle">Crea una categoría para organizar tus productos</p>
+    </div>
+    } @else {
+    <div class="items-list">
+      @for (category of categoriesService.categories(); track category.id) {
+      <div class="item-card">
+        <div class="item-info">
+          <h3>{{ category.name }}</h3>
         </div>
-      } @else {
-        <div class="items-list">
-          @for (category of categoriesService.categories(); track category.id) {
-            <div class="item-card">
-              <div class="item-info">
-                <h3>{{ category.name }}</h3>
-              </div>
-              <div class="item-actions">
-                <button 
-                  class="btn btn-edit" [routerLink]="['category',category.id,'edit']" [disabled]="isLoading"
-                >
-                  ✏️ Editar
-                </button>
-                <button 
-                  class="btn btn-delete"
-                  (click)="deleteCategory(category.id)"
-                  [disabled]="isLoading"
-                >
-                  🗑️ Eliminar
-                </button>
-              </div>
-            </div>
-          }
+        <div class="item-actions">
+          <button class="btn btn-edit" [routerLink]="['category',category.id,'edit']" [disabled]="isLoading">
+            ✏️ Editar
+          </button>
+          <button class="btn btn-delete" (click)="deleteCategory(category.id)" [disabled]="isLoading">
+            🗑️ Eliminar
+          </button>
         </div>
+      </div>
       }
     </div>
+    }
+  </div>
   }
 
   @if (activeTab === 'products') {
-    <div class="tab-content">
-      <div class="content-header">
-        <h2>Productos</h2>
-        <button class="btn-body" routerLink="newproduct" [disabled]="isLoading">
-          + Nuevo Producto
-        </button>
-      </div>
+  <div class="tab-content">
+    <div class="content-header">
+      <h2>Productos</h2>
+      <button class="btn-body" routerLink="newproduct" [disabled]="isLoading">
+        + Nuevo Producto
+      </button>
+    </div>
 
-      @if (productsService.products().length === 0) {
-        <div class="empty-state">
-          <p>No hay productos aún</p>
-          <p class="subtitle">Crea un producto para que aparezca en tu menú</p>
+    @if (productsService.products().length === 0) {
+    <div class="empty-state">
+      <p>No hay productos aún</p>
+      <p class="subtitle">Crea un producto para que aparezca en tu menú</p>
+    </div>
+    } @else {
+    <div class="items-list">
+      @for (product of productsService.products(); track product.id) {
+      <div class="item-card">
+        <div class="item-info">
+          <div class="product-header">
+            <h3>{{ product.name }}</h3>
+            @if (product.featured) {
+            <span class="badge badge-featured">⭐ Destacado</span>
+            }
+            @if (product.discount && product.discount > 0) {
+            <span class="badge badge-discount">-{{ product.discount }}%</span>
+            }
+          </div>
+          <p class="product-description">{{ product.description }}</p>
+          <div class="product-meta">
+            <span>💰 ${{ product.price }}</span>
+            @if (product.recommendedFor) {
+            <span>👥 {{ product.recommendedFor }}</span>
+            }
+            @if (product.hasHappyHour) {
+            <span>🎉 Happy Hour</span>
+            }
+          </div>
         </div>
-      } @else {
-        <div class="items-list">
-          @for (product of productsService.products(); track product.id) {
-            <div class="item-card">
-              <div class="item-info">
-                <div class="product-header">
-                  <h3>{{ product.name }}</h3>
-                  @if (product.featured) {
-                    <span class="badge badge-featured">⭐ Destacado</span>
-                  }
-                  @if (product.discount && product.discount > 0) {
-                    <span class="badge badge-discount">-{{ product.discount }}%</span>
-                  }
-                </div>
-                <p class="product-description">{{ product.description }}</p>
-                <div class="product-meta">
-                  <span>💰 ${{ product.price }}</span>
-                  @if (product.recommendedFor) {
-                    <span>👥 {{ product.recommendedFor }}</span>
-                  }
-                  @if (product.hasHappyHour) {
-                    <span>🎉 Happy Hour</span>
-                  }
-                </div>
-              </div>
-              <div class="item-actions">
-                <button class="btn btn-edit" [routerLink]="['product',product.id,'edit']" [disabled]="isLoading">
-                  ✏️ Editar
-                </button>
-                <button 
-                  class="btn btn-delete"
-                  (click)="deleteProduct(product.id)"
-                  [disabled]="isLoading"
-                >
-                  🗑️ Eliminar
-                </button>
-              </div>
-            </div>
-          }
+        <div class="item-actions">
+          <button class="btn btn-edit" [routerLink]="['product',product.id,'edit']" [disabled]="isLoading">
+            ✏️ Editar
+          </button>
+          <button class="btn btn-delete" (click)="deleteProduct(product.id)" [disabled]="isLoading">
+            🗑️ Eliminar
+          </button>
         </div>
+      </div>
       }
     </div>
-  }  
+    }
+  </div>
+  }
 </div>
-

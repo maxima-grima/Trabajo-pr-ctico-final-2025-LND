@@ -28,7 +28,7 @@ export class AdminLayout {
 
     try {
       this.authService.logout();
-    
+
     } catch (err) {
       this.error = 'Error al cerrar sesión';
       this.showLogOutConfirm = false;

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   router = inject(Router);
   revisionTokenInterval: number | undefined;
-  
+
   get token(): string | null {
     return localStorage.getItem("token");
   }
@@ -25,7 +25,7 @@ export class AuthService {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData)
     });
-    
+
     if (res.ok) {
       const tokenText = (await res.json()).token;
       localStorage.setItem("token", tokenText);
@@ -54,7 +54,7 @@ export class AuthService {
     const claims = this.parseJwt();
     return parseInt(claims.sub);
   }
-  
+
   parseJwt() {
     if (!this.token) return null;
     const base64Url = this.token.split('.')[1];

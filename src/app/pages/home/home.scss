@@ -1,19 +1,14 @@
 .home-container {
   display: block;
   min-height: 100vh;
-  background-color: #f7c59f; 
+  background-color: #f7c59f;
   color: #004e89;
   font-family: 'Poppins', sans-serif;
 }
 
-
-
-
-
 main {
   padding: 2rem;
 }
-
 
 .mensaje {
   text-align: center;
@@ -34,11 +29,13 @@ main {
   font-size: 1.1rem;
   color: #333;
 }
+
 .restaurant-list h3 {
   text-align: center;
   margin-bottom: 1rem;
   color: #004e89;
 }
+
 ul {
   list-style: none;
   display: grid;
@@ -46,6 +43,7 @@ ul {
   gap: 1.5rem;
   padding: 0;
 }
+
 app-users-list-item {
   display: block;
   background-color: #efefd0;
@@ -54,10 +52,12 @@ app-users-list-item {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
+
 app-users-list-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 12px rgba(0, 78, 137, 0.25);
 }
+
 footer {
   background-color: #004e89;
   color: #efefd0;

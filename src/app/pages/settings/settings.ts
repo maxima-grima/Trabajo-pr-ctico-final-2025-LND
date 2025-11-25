@@ -24,14 +24,14 @@ export class Settings implements OnInit {
   async ngOnInit() {
     try {
       const userId = this.authService.getUserId();
-      
+
       if (!userId) {
         this.error = 'No hay sesión activa';
         this.cargando = false;
         return;
       }
       this.user = await this.usersService.getUsersbyId(userId);
-      
+
       if (!this.user) {
         this.error = 'No se pudieron cargar los datos del usuario';
       }
@@ -57,7 +57,7 @@ export class Settings implements OnInit {
 
     try {
       const result = await this.usersService.deleteUser(this.user.id);
-      
+
       if (result) {
         this.authService.logout();
       } else {

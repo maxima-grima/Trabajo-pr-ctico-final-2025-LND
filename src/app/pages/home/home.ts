@@ -1,7 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
 import { UsersService } from '../../services/users-service';
-import { User } from '../../interfaces/user';
 import { RouterModule } from '@angular/router';
 import { UsersListItem } from '../../Components/users-list-item/users-list-item';
 @Component({

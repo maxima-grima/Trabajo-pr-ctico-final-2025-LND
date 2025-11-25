@@ -9,7 +9,7 @@ export class ProductsService {
   authService = inject(AuthService);
   readonly API_USERS_URL = "https://w370351.ferozo.com/api/users";
   readonly API_PRODUCTS_URL = "https://w370351.ferozo.com/api/products";
-  
+
   products = signal<Product[]>([]);
 
   async getProductsByRestaurant(restaurantId: number) {
@@ -26,14 +26,14 @@ export class ProductsService {
   }
 
 
-async getMyProducts() {
-     const res = await fetch(`${this.API_PRODUCTS_URL}/me`, {
-       headers: { 'Authorization': `Bearer ${this.authService.token}` }
-     });
-     if (!res.ok) { this.products.set([]); return; };
-     const data = await res.json();
-     this.products.set(data);
-    }
+  async getMyProducts() {
+    const res = await fetch(`${this.API_PRODUCTS_URL}/me`, {
+      headers: { 'Authorization': `Bearer ${this.authService.token}` }
+    });
+    if (!res.ok) { this.products.set([]); return; };
+    const data = await res.json();
+    this.products.set(data);
+  }
   async createProduct(product: NewProduct) {
 
     const res = await fetch(this.API_PRODUCTS_URL, {
@@ -60,7 +60,7 @@ async getMyProducts() {
       body: JSON.stringify(product)
     });
     if (!res.ok) return undefined;
-    this.products.update(current => 
+    this.products.update(current =>
       current.map(p => p.id === product.id ? product : p)
     );
     return product;
@@ -76,7 +76,7 @@ async getMyProducts() {
     return true;
   }
 
-  
+
 
   async setDiscount(id: string | number, discountData: DiscountData) {
     const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/discount`, {
@@ -91,7 +91,7 @@ async getMyProducts() {
   }
 
   async setHappyHour(id: string | number, happyHourData: HappyHourData) {
-     const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/happyHour`, {
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/happyHour`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

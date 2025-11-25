@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Category, NewCategory, UpdateCategoryRequestDto,  } from '../interfaces/category';
+import { Category, NewCategory, UpdateCategoryRequestDto, } from '../interfaces/category';
 import { AuthService } from './auth-service';
 
 @Injectable({
@@ -15,9 +15,9 @@ export class CategoriesService {
 
   async getCategoriesByRestaurant(restaurantId: number) {
     const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/categories`);
-    if (!res.ok) { 
-      this.categories.set([]); 
-      return; 
+    if (!res.ok) {
+      this.categories.set([]);
+      return;
     }
     const data = (await res.json()) as Category[];
     this.categories.set(data);
@@ -50,15 +50,15 @@ export class CategoriesService {
     if (!res.ok) return undefined;
     const updatedCategory = (await res.json()) as Category;
 
-    this.categories.update(currentCategories => 
-      currentCategories.map(cat => 
+    this.categories.update(currentCategories =>
+      currentCategories.map(cat =>
         cat.id === id ? updatedCategory : cat
       )
     );
-    
+
     return updatedCategory;
   }
-  
+
 
   async deleteCategory(id: string | number) {
     const res = await fetch(`${this.API_CATEGORIES_URL}/${id}`, {
@@ -66,10 +66,10 @@ export class CategoriesService {
       headers: { 'Authorization': `Bearer ${this.authService.token}` }
     });
     if (!res.ok) return false;
-    this.categories.update(currentCategories => 
+    this.categories.update(currentCategories =>
       currentCategories.filter(cat => cat.id !== id)
     );
-    
+
     return true;
   }
 }

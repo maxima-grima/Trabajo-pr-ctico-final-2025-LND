@@ -1,32 +1,29 @@
 <div class="general-container">
     @if (idCategory()) {
-        <h2>Editar Categoría</h2>
+    <h2>Editar Categoría</h2>
     }
     @else {
-        <h2>Nueva Categoría</h2>
+    <h2>Nueva Categoría</h2>
     }
     <div class="form-section">
         <form (ngSubmit)="handleFormSubmission(newCategoryForm)" #newCategoryForm="ngForm">
-        <div class="form-group">        
-            <input id="name" type="text" name="name" placeholder="Nombre de la categoría" ngModel="{{categoryOriginal?.name}}" #name="ngModel" required="true">
-            @if (name.dirty && name.invalid) {
+            <div class="form-group">
+                <input id="name" type="text" name="name" placeholder="Nombre de la categoría"
+                    ngModel="{{categoryOriginal?.name}}" #name="ngModel" required="true">
+                @if (name.dirty && name.invalid) {
                 <p class="error">El nombre es obligatorio y no puede ser una sola letra</p>
-            }
-        </div>               
-        
-        @if (idCategory()) {
-            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Editar</button>
-        } @else {   
-            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Crear</button>
-        }
+                }
+            </div>
 
-        @if (isLoading) {
-         <app-spinner></app-spinner>
-        }
+            @if (idCategory()) {
+            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Editar</button>
+            } @else {
+            <button class="btn-body" [disabled]="newCategoryForm.invalid || isLoading">Crear</button>
+            }
+
+            @if (isLoading) {
+            <app-spinner></app-spinner>
+            }
         </form>
     </div>
 </div>
-
-
-    
-    
